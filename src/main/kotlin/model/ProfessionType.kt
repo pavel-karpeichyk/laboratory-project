@@ -1,4 +1,4 @@
-package data_classes_enums_simple_classes
+package model
 
 enum class ProfessionType(salary: Int) {
   ACCOUNTANT(1000),

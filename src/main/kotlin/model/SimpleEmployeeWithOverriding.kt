@@ -1,4 +1,4 @@
-package data_classes_enums_simple_classes
+package model
 
 class SimpleEmployeeWithOverriding(var id: Int, var Name: String, var Surname: String, val profession: Professions) {
   override fun equals(other: Any?): Boolean {
