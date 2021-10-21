@@ -1,14 +1,13 @@
 package abstract_factory
 
-import `interface`.ForcePlane
-import `interface`.PassengerPlane
-import `interface`.PlaneFactory
-import `interface`.СargoPlane
-import boeing.BoeingCargo
-import boeing.BoeingForce
-import boeing.BoeingPassenger
+import abstract_factory.passenger_plane.PassengerPlane
+import abstract_factory.PlaneFactory
+import abstract_factory.cargo_plane.СargoPlane
+import abstract_factory.cargo_plane.BoeingCargo
+import abstract_factory.force_plane.BoeingForce
+import abstract_factory.passenger_plane.BoeingPassenger
 
-open class BoeingFactory(): PlaneFactory {
+class BoeingFactory(): PlaneFactory {
 
   override fun createСargoPlane(): СargoPlane {
     println("Boeing Cargo Plane created")
