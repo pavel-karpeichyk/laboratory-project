@@ -1,23 +1,30 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.5.31'
-    id 'groovy'
+  id 'org.jetbrains.kotlin.jvm' version '1.5.31'
+  id 'groovy'
+  id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
-    mavenCentral()
+  mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    implementation 'org.codehaus.groovy:groovy-all:3.0.5'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib"
+  implementation 'org.codehaus.groovy:groovy-all:3.0.5'
+  implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+"
+  implementation 'com.google.code.gson:gson:2.8.8'
+  implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0'
+  implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.3.0'
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+  implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.1'
 }
 
 test {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
