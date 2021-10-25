@@ -23,6 +23,7 @@ dependencies {
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
   implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.1'
+  implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.4'
 }
 
 test {

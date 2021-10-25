@@ -1,1 +1,4 @@
-{"url":"robocop.com","login":"Robocop","password":"1984"}
+---
+url: "robocop.com"
+login: "Robocop"
+password: "1984"
