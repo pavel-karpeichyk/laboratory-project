@@ -1,6 +1,6 @@
 package model
 
-class SimpleEmployeeWithOverriding(var id: Int, var Name: String, var Surname: String, val profession: Professions) {
+class SimpleEmployeeWithOverriding(var id: Int, var Name: String, var Surname: String, val profession: ProfessionType) {
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (javaClass != other?.javaClass) return false
