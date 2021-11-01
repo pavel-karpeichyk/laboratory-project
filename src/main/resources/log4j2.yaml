@@ -1,12 +1,12 @@
 Configuration:
-  status: warn
+  status: info
   name: YAMLConfigTest
   properties:
     property:
       name: filename
       value: target/test-yaml.log
-  thresholdFilter:
-    level: debug
+
+
   appenders:
     Console:
       name: STDOUT
@@ -20,7 +20,7 @@ Configuration:
         Pattern: "%d %p %C{1.} [%t] %m%n"
       Filters:
         ThresholdFilter:
-          level: error
+          level: info
 
   Loggers:
     logger:
@@ -35,12 +35,13 @@ Configuration:
         AppenderRef:
           ref: STDOUT
       -
-        name: org.apache.log4j.FileAppender
-        level: debug
+        name: org.apache.logging.log4j.test2
+        level: info
         additivity: false
         AppenderRef:
           ref: File
     Root:
       level: info
       AppenderRef:
-        ref: STDOUT
+        ref: File
+
