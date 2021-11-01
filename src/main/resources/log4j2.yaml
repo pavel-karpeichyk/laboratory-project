@@ -5,8 +5,6 @@ Configuration:
     property:
       name: filename
       value: target/test-yaml.log
-
-
   appenders:
     Console:
       name: STDOUT
@@ -17,15 +15,14 @@ Configuration:
       name: File
       fileName: src/main/resources/log.log
       PatternLayout:
-        Pattern: "%d %p %C{1.} [%t] %m%n"
+        Pattern: "%highlight{%d{yyyy:MM:dd HH:mm:ss.SSS}[%-5level][%-10t]%-10.10logger{1.} : %msg}%xEx%n"
       Filters:
         ThresholdFilter:
           level: info
 
   Loggers:
     logger:
-      -
-        name: org.apache.logging.log4j.test1
+      - name: org.apache.logging.log4j.test1
         level: debug
         additivity: false
         ThreadContextMapFilter:
@@ -34,8 +31,7 @@ Configuration:
             value: 123
         AppenderRef:
           ref: STDOUT
-      -
-        name: org.apache.logging.log4j.test2
+      - name: org.apache.logging.log4j.test2
         level: info
         additivity: false
         AppenderRef:
@@ -43,5 +39,5 @@ Configuration:
     Root:
       level: info
       AppenderRef:
-        ref: File
-
+       - ref: File
+       - ref: STDOUT
