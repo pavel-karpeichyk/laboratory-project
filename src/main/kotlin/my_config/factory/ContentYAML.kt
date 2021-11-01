@@ -11,10 +11,9 @@ import org.apache.logging.log4j.Logger
 import java.io.File
 
 class ContentYAML() : ContentFactory {
-   private val log: Logger = LogManager.getRootLogger()
+   private val log: Logger = LogManager.getLogger("YAML")
   override fun getContent(filePath: String): MyModelConfig {
     log.info("Start YAML Factory")
-    return ObjectMapper(YAMLFactory()).registerModule(KotlinModule()).readValue<MyModelConfig>(File
-      ("${filePath}${FileType.YAML.fileExtension}"))
+    return ObjectMapper(YAMLFactory()).registerModule(KotlinModule()).readValue<MyModelConfig>(File("${filePath}${FileType.YAML.fileExtension}"))
   }
 }

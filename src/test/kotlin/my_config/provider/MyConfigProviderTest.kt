@@ -9,8 +9,6 @@ import org.junit.jupiter.params.provider.EnumSource
 
 class MyConfigProviderTest {
 
-  private val logger: Logger = LogManager.getRootLogger()
-
   @ParameterizedTest(name = "Verify getContentFromFile returns config from file {arguments}")
   @EnumSource(FileType::class)
   fun `verify getContentFromFile returns config from file `(fileType: FileType) {
@@ -19,6 +17,5 @@ class MyConfigProviderTest {
     assertEquals(
       expectedContent, actualContent,
       "Content from file doesn't equal content from $fileType")
-    logger.info("Test completed")
   }
 }

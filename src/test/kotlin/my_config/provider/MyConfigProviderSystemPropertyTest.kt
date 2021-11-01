@@ -1,16 +1,12 @@
 package my_config.provider
 
 import my_config.model.MyModelConfig
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class MyConfigProviderSystemPropertyTest {
-
-  private val logger: Logger = LogManager.getRootLogger()
 
   companion object {
     private const val FILE_TYPE_SYSTEM_PROPERTY_NAME = "FILE_TYPE_SYSTEM_PROPERTY"
@@ -19,7 +15,6 @@ class MyConfigProviderSystemPropertyTest {
   @BeforeEach
   fun `set value in system variable`() {
     System.setProperty(FILE_TYPE_SYSTEM_PROPERTY_NAME, FileType.YAML.name)
-    logger.info("Create and set system variable $FILE_TYPE_SYSTEM_PROPERTY_NAME")
   }
 
   @Test
@@ -29,13 +24,12 @@ class MyConfigProviderSystemPropertyTest {
     val actualContent: MyModelConfig = MyConfigProvider.getContentFromFile(fileType)
     Assertions.assertEquals(
       expectedContent, actualContent,
-      "Content from file doesn't equal content from $fileType")
-    logger.info("Test completed")
+      "Content from file doesn't equal content from $fileType"
+    )
   }
 
   @AfterEach
   fun `delete system variable`() {
     System.clearProperty(FILE_TYPE_SYSTEM_PROPERTY_NAME)
-    logger.info("Delete system variable $FILE_TYPE_SYSTEM_PROPERTY_NAME")
   }
 }

@@ -9,10 +9,9 @@ import org.apache.logging.log4j.Logger
 import java.io.File
 
 class ContentJSON() : ContentFactory {
- private  val logger: Logger= LogManager.getRootLogger()
+ private  val logger: Logger= LogManager.getLogger("JSON")
   override fun getContent(filePath: String): MyModelConfig {
     logger.info("Start JSON factory")
-    return jacksonObjectMapper().readValue<MyModelConfig>(File("${filePath}" +
-        "${FileType.JSON.fileExtension}"))
+    return jacksonObjectMapper().readValue<MyModelConfig>(File("${filePath}${FileType.JSON.fileExtension}"))
   }
 }
