@@ -14,6 +14,7 @@ class MyConfigProviderTest {
   fun `verify getContentFromFile returns config from file `(fileType: FileType) {
     val expectedContent: MyModelConfig = MyModelConfig("127.0.0.1", "robocop.com", "Robocop", "1984")
     val actualContent: MyModelConfig = MyConfigProvider.getContentFromFile(fileType)
+    print(MyModelConfig().getValue("url", actualContent))
     assertEquals(
       expectedContent, actualContent,
       "Content from file doesn't equal content from $fileType")

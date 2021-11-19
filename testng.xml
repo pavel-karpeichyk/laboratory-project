@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="Google Search">
+  <test name="google search test">
+    <parameter name="searchText" value="Selenium"/>
+    <classes>
+      <class name="TestNGXmlProvider"/>
+    </classes>
+  </test>
+</suite>
