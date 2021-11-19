@@ -27,7 +27,7 @@ dependencies {
 
   implementation("org.junit.jupiter:junit-jupiter:5.7.0")
   implementation("org.testng:testng:7.1.0")
-  testImplementation("au.com.dius.pact.provider:gradle:4.2.14")
+ // testImplementation("au.com.dius.pact.provider:gradle:4.2.14")
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
   testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
