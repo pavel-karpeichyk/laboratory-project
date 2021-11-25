@@ -2,18 +2,14 @@ package task_1064.driver.factory
 
 import com.codeborne.selenide.Configuration
 import io.github.bonigarcia.wdm.WebDriverManager
-import task_1064.driver.config.DataDriverConfig
-import task_1064.driver.model.DriverConfigModel
+import task_1064.driver.config.DataDriverProvider
 
 class RemoteDriverFactory() : DriverFactory {
 
-  private val driveModel: DriverConfigModel = DataDriverConfig().getConfig()
-
-  override fun getContent(dataDriverConfig: DataDriverConfig) {
-    Configuration.remote = "${driveModel.hostRemoteDriver}:${driveModel.portRemoteDriver}"
-    Configuration.browser = driveModel.browserType
-    Configuration.timeout = driveModel.timeout!!.toLong()
-    Configuration.browserSize = driveModel.browserScreenSize
+  override fun setDriverConfig(dataDriverConfig: DataDriverProvider) {
+    Configuration.remote =
+      "${dataDriverConfig.getConfig().hostRemoteDriver}:${dataDriverConfig.getConfig().portRemoteDriver}"
+    BaseDriverFactory().setDriverConfig(dataDriverConfig)
     WebDriverManager.getInstance().setup()
   }
 }

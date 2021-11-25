@@ -1,25 +1,25 @@
 package task_1064.driver.provider
 
-import task_1064.driver.config.DataDriverConfig
+import task_1064.driver.config.DataDriverProvider
 import task_1064.driver.factory.ChromeDriverFactory
 import task_1064.driver.factory.FirefoxDriverFactory
 import task_1064.driver.factory.RemoteDriverFactory
-import task_1064.driver.model.DriverConfigModel
+import task_1064.driver.model.DriverConfig
 import task_1064.driver.provider.BrowserType.CHROME
 import task_1064.driver.provider.BrowserType.FIREFOX
 
  class DriverConfigProvider {
 
-   private  val driveModel: DriverConfigModel = DataDriverConfig().getConfig()
+   private  val driveModel: DriverConfig = DataDriverProvider().getConfig()
 
-  fun getDriverFactory(dataDriverConfig: DataDriverConfig) {
+  fun getDriverFactory(dataDriverConfig: DataDriverProvider) {
     when (driveModel.driverType) {
       DriverType.LOCAL.name->
       when (driveModel.browserType) {
-        CHROME.name -> ChromeDriverFactory().getContent(dataDriverConfig)
-        FIREFOX.name -> FirefoxDriverFactory().getContent(dataDriverConfig)
+        CHROME.name -> ChromeDriverFactory().setDriverConfig(dataDriverConfig)
+        FIREFOX.name -> FirefoxDriverFactory().setDriverConfig(dataDriverConfig)
       }
-      DriverType.REMOTE.name -> RemoteDriverFactory().getContent(dataDriverConfig)
+      DriverType.REMOTE.name -> RemoteDriverFactory().setDriverConfig(dataDriverConfig)
     }
   }
 }
