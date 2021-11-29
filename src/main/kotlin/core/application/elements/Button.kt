@@ -9,11 +9,12 @@ import org.openqa.selenium.By
 
 object Button {
 
-  private  val logger: Logger = LogManager.getLogger()
+  private val logger: Logger = LogManager.getLogger()
 
-  fun clickButton(locator: By){
-    val element: SelenideElement = `$`(locator)
-    element.shouldBe(Condition.visible).click()
-    logger.info("Click button: ${element.text()}")
+  fun clickButton(locator: By) {
+    `$`(locator).also { element ->
+      element.shouldBe(Condition.visible).click()
+      logger.info("Click button: ${element.text()}")
+    }
   }
 }

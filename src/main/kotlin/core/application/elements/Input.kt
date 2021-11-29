@@ -13,9 +13,10 @@ object Input {
   private val logger: Logger = LogManager.getLogger()
 
   fun setInputValue(locator: By, value: String) {
-    val element: SelenideElement = `$`(locator)
-    element.shouldBe(Condition.visible).sendKeys(Keys.CONTROL, "A")
-    element.sendKeys(value)
-    logger.info("Set $value in input element")
+    `$`(locator).also { element ->
+      element.shouldBe(Condition.visible).sendKeys(Keys.CONTROL, "A")
+      element.sendKeys(value)
+      logger.info("Set $value in input element")
+    }
   }
 }
