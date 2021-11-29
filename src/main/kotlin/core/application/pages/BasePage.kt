@@ -5,8 +5,7 @@ import com.codeborne.selenide.Selenide.open
 abstract  class BasePage {
   protected abstract val  url: String
 
-  open fun openPage(): BasePage{
+   fun openPage(){
     open(url)
-    return this
   }
 }

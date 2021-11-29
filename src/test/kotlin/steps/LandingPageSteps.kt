@@ -4,10 +4,16 @@ import core.application.pages.LandingPage
 
 class LandingPageSteps {
 
-  fun fillCalculatorForm(amount: String, loanDays: String): LandingPage{
-    return LandingPage().apply {
-    LandingPage().setLoanAmount(amount)
-    LandingPage().setLoanPeriod(loanDays)
+  private val landingPage: LandingPage by lazy {LandingPage()}
+
+  fun fillCalculatorForm(amount: String, loanDays: String): LandingPage {
+    return landingPage.apply {
+      setLoanAmount(amount)
+      setLoanPeriod(loanDays)
     }
+  }
+
+  fun clickRequestButton(){
+    landingPage.clickRequestButton()
   }
 }

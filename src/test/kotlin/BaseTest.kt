@@ -1,16 +1,17 @@
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.TestInstance
 import core.application.pages.LandingPage
 import core.driver.provider.DriverConfigProvider
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
- abstract class BaseTest {
+abstract class BaseTest {
 
-  @BeforeAll
+  @BeforeEach
   fun setupApplication() {
-    DriverConfigProvider().getDriverFactory()
-    LandingPage().openPage().clickAcceptCoockiesButton()
+    DriverConfigProvider().setDriverConfig()
+    LandingPage().apply {
+      openPage()
+      clickAcceptCoockiesButton()
+    }
   }
-
-
 }

@@ -7,10 +7,10 @@ import core.driver.model.DriverConfig
 
 class RemoteDriverFactory() : BaseDriverFactory() {
 
-  override fun setDriverConfig(driveModel: DriverConfig) {
+  override fun setDriverConfig(driverModel: DriverConfig) {
     Configuration.remote =
-      "${DataDriverProvider().getConfig().hostRemoteDriver}:${DataDriverProvider().getConfig().portRemoteDriver}"
-    super.setDriverConfig(driveModel)
+      "${driverModel.hostRemoteDriver}:${driverModel.portRemoteDriver}"
+    super.setDriverConfig(driverModel)
     WebDriverManager.getInstance().setup()
   }
 }

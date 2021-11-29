@@ -4,5 +4,5 @@ import core.driver.model.DriverConfig
 
 interface DriverFactory {
 
-    fun setDriverConfig(driveModel: DriverConfig)
+    fun setDriverConfig(driverModel: DriverConfig)
 }
