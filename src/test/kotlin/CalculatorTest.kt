@@ -10,16 +10,17 @@ import steps.LandingPageSteps
 class CalculatorTest : BaseTest() {
 
   private val appConfig: AppConfig = AppConfigProvider().getAppConfig()
-  private val expectedUrl: String = RegistrationPage().getPageUrl()
+  private val registrationPageUrl: String = RegistrationPage().getPageUrl()
+  private val expectedUrl: String = "https://${appConfig.user}:${appConfig.pass}@${registrationPageUrl}"
   private val loanDays: String = "7"
   private val amount: String = "100"
 
   @Test
-  fun `verify url registration page`() {
+  fun `Submit Landing Page calculator values and verify redirect on Registration Page`() {
     LandingPageSteps().apply {
       fillCalculatorForm(amount, loanDays)
       clickRequestButton()
     }
-    verifyCurrentUrl("https://${appConfig.user}:${appConfig.pass}@${expectedUrl}")
+    verifyCurrentUrl(expectedUrl)
   }
 }
