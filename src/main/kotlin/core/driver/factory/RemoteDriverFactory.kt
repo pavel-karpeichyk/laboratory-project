@@ -1,9 +1,8 @@
 package core.driver.factory
 
 import com.codeborne.selenide.Configuration
-import io.github.bonigarcia.wdm.WebDriverManager
-import core.driver.config.DataDriverProvider
 import core.driver.model.DriverConfig
+import io.github.bonigarcia.wdm.WebDriverManager
 
 class RemoteDriverFactory() : BaseDriverFactory() {
 

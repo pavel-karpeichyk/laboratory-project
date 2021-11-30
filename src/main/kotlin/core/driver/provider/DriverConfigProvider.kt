@@ -16,15 +16,15 @@ class DriverConfigProvider {
   private val driverModel: DriverConfig = DataDriverProvider().getConfig()
 
   fun setDriverConfig() {
-    var driverFactory: DriverFactory =  when (driverModel.driverType) {
+    var driverFactory: DriverFactory = when (driverModel.driverType) {
       LOCAL -> {
-         when (driverModel.browserType) {
+        when (driverModel.browserType) {
           CHROME -> ChromeDriverFactory()
           FIREFOX -> FirefoxDriverFactory()
         }
       }
       REMOTE -> RemoteDriverFactory()
     }
-      driverFactory.setDriverConfig(driverModel)
+    driverFactory.setDriverConfig(driverModel)
   }
 }

@@ -1,7 +1,7 @@
 package core.driver.config
 
-import core.util.YAMLreader
 import core.driver.model.DriverConfig
+import core.util.YAMLreader
 
 open class DataDriverProvider {
 

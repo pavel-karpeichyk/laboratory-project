@@ -2,10 +2,10 @@ package core.application.pages
 
 import com.codeborne.selenide.Selenide.open
 
-abstract  class BasePage {
-  protected abstract val  url: String
+abstract class BasePage {
+  protected abstract val url: String
 
-   fun openPage(){
+  fun openPage() {
     open(url)
   }
 }

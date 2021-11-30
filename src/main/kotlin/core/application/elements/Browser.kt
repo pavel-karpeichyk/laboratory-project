@@ -5,7 +5,7 @@ import com.codeborne.selenide.WebDriverConditions.url
 
 object Browser {
 
-  fun verifyCurrentUrl(url: String): String{
+  fun verifyCurrentUrl(url: String): String {
     return webdriver().shouldHave(url(url)).toString()
   }
 }

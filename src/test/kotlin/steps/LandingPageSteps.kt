@@ -6,30 +6,30 @@ import org.apache.logging.log4j.Logger
 
 class LandingPageSteps {
 
-  private val landingPage: LandingPage by lazy {LandingPage()}
+  private val landingPage: LandingPage by lazy { LandingPage() }
   private val logger: Logger = LogManager.getLogger()
 
-  fun openLandingPage(){
-    LandingPage().openPage()
+  fun openLandingPage() {
     logger.info("Open Landing Page")
+    LandingPage().openPage()
   }
 
-  fun clickAcceptCoockiesButton(){
-    LandingPage().clickAcceptCoockiesButton()
+  fun clickAcceptCoockiesButton() {
     logger.info("Click Accept Coockies Button")
+    LandingPage().clickAcceptCoockiesButton()
   }
 
   fun fillCalculatorForm(amount: String, loanDays: String): LandingPage {
     return landingPage.apply {
-      setLoanAmount(amount)
       logger.info("Set loan amount - $amount ")
-      setLoanPeriod(loanDays)
+      setLoanAmount(amount)
       logger.info("Set loan period - $loanDays days")
+      setLoanPeriod(loanDays)
     }
   }
 
-  fun clickRequestButton(){
-    landingPage.clickRequestButton()
+  fun clickRequestButton() {
     logger.info("Click request button ")
+    landingPage.clickRequestButton()
   }
 }
