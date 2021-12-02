@@ -25,13 +25,12 @@ class AppConfigTest {
     appConfic = AppConfigProvider().getAppConfig()
     actualPass = appConfic?.pass!!
     actualLogin = appConfic?.user!!
-    assertEquals(expectedLogin, actualLogin)
-    assertEquals(expectedPass, actualPass)
+    assertEquals(expectedLogin, actualLogin, " Doesn't match")
+    assertEquals(expectedPass, actualPass, "Doesn't match")
   }
 
   @AfterAll
   fun cleanup() {
-    clearContext()
     clearProperty(SYSTEM_PROPERTY_APP_CONFIG_PASSWORD)
     clearProperty(SYSTEM_PROPERTY_APP_CONFIG_LOGIN)
   }
