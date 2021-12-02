@@ -5,7 +5,7 @@ import core.driver.provider.DriverType
 
 data class DriverConfig(
   val driverType: DriverType,
-  val browserType: BrowserType,
+  var browserType: BrowserType,
   val timeout: Long,
   val browserScreenSize: String,
   val hostRemoteDriver: String,

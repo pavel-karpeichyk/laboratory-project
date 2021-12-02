@@ -11,7 +11,7 @@ import core.driver.provider.BrowserType.FIREFOX
 import core.driver.provider.DriverType.LOCAL
 import core.driver.provider.DriverType.REMOTE
 
-class DriverConfigProvider {
+class DriverConfigSetter {
 
   private val driverModel: DriverConfig = DataDriverProvider().getConfig()
 

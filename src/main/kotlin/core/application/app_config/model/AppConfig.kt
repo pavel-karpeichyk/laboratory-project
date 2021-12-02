@@ -1,7 +1,7 @@
 package core.application.app_config.model
 
 data class AppConfig(
-  val user: String,
-  val pass: String,
+  var user: String,
+  var pass: String,
   val host: String
 )

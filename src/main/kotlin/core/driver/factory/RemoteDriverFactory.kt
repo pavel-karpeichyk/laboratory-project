@@ -10,6 +10,5 @@ class RemoteDriverFactory() : BaseDriverFactory() {
     Configuration.remote =
       "${driverModel.hostRemoteDriver}:${driverModel.portRemoteDriver}"
     super.setDriverConfig(driverModel)
-    WebDriverManager.getInstance().setup()
   }
 }

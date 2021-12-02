@@ -1,19 +1,17 @@
 package core.application.pages
 
 import com.codeborne.selenide.Selenide.sleep
-import core.application.app_config.config.AppConfigProvider
-import core.application.app_config.model.AppConfig
 import core.application.elements.Button.clickButton
 import core.application.elements.Input.setInputValue
+import core.holder.StaticContextHolder.appConfic
 import org.openqa.selenium.By
 
 class LandingPage : BasePage() {
 
-  private val appConfig: AppConfig = AppConfigProvider().getAppConfig()
-  override val url: String = "https://${appConfig.user}:${appConfig.pass}@${appConfig.host}"
+  override val url: String = "https://${appConfic?.user}:${appConfic?.pass}@${appConfic?.host}"
   private val acceptCoockiesButton: By = By.xpath("//button[@aria-label='Aceptar todo']")
-  private val loanPeriod: By = By.id("loanDays")
-  private val loanAmount: By = By.id("loanAmount")
+  private val loanPeriodInput: By = By.id("loanDays")
+  private val loanAmountInput: By = By.id("loanAmount")
   private val requestLoanButton: By = By.xpath("//a[@class='btn btn_red mainCalculator__submit']")
 
   fun clickAcceptCoockiesButton() {
@@ -21,12 +19,12 @@ class LandingPage : BasePage() {
   }
 
   fun setLoanPeriod(loanDays: String) {
-    setInputValue(loanPeriod, loanDays)
+    setInputValue(loanPeriodInput, loanDays)
     sleep(1000)
   }
 
   fun setLoanAmount(amount: String) {
-    setInputValue(loanAmount, amount)
+    setInputValue(loanAmountInput, amount)
     sleep(1000)
   }
 
