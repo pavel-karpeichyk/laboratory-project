@@ -1,5 +1,5 @@
 driverType: LOCAL
-browserType: FIREFOX
+browserType: CHROME
 timeout: 10000
 browserScreenSize: 1280x720
 

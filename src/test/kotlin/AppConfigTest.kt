@@ -1,6 +1,5 @@
 import core.application.app_config.config.AppConfigProvider
 import core.holder.StaticContextHolder.appConfic
-import core.holder.StaticContextHolder.clearContext
 import core.holder.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_LOGIN
 import core.holder.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_PASSWORD
 import org.junit.jupiter.api.AfterAll
@@ -25,8 +24,8 @@ class AppConfigTest {
     appConfic = AppConfigProvider().getAppConfig()
     actualPass = appConfic?.pass!!
     actualLogin = appConfic?.user!!
-    assertEquals(expectedLogin, actualLogin, " Doesn't match")
-    assertEquals(expectedPass, actualPass, "Doesn't match")
+    assertEquals(expectedLogin, actualLogin, "Expected user $expectedLogin doesn't match actual $actualLogin")
+    assertEquals(expectedPass, actualPass, "Expected password $expectedPass doesn't match  actual $actualPass")
   }
 
   @AfterAll

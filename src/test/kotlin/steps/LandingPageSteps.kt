@@ -14,9 +14,12 @@ class LandingPageSteps {
     LandingPage().openPage()
   }
 
-  fun clickAcceptCoockiesButton() {
+  fun clickAcceptCoockiesButton(): LandingPage {
     logger.info("Click Accept Coockies Button")
-    LandingPage().clickAcceptCoockiesButton()
+    return landingPage.apply {
+      clickAcceptCoockiesButton()
+      requestLoanButtonIsDisplayed()
+    }
   }
 
   fun fillCalculatorForm(amount: String, loanDays: String): LandingPage {

@@ -1,6 +1,7 @@
 package core.application.pages
 
-import com.codeborne.selenide.Selenide.sleep
+import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Selenide.`$`
 import core.application.elements.Button.clickButton
 import core.application.elements.Input.setInputValue
 import core.holder.StaticContextHolder.appConfic
@@ -20,15 +21,17 @@ class LandingPage : BasePage() {
 
   fun setLoanPeriod(loanDays: String) {
     setInputValue(loanPeriodInput, loanDays)
-    sleep(1000)
   }
 
   fun setLoanAmount(amount: String) {
     setInputValue(loanAmountInput, amount)
-    sleep(1000)
   }
 
   fun clickRequestButton() {
     clickButton(requestLoanButton)
+  }
+
+  fun requestLoanButtonIsDisplayed() {
+    `$`(requestLoanButton).shouldBe(Condition.visible)
   }
 }

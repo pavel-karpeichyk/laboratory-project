@@ -12,8 +12,8 @@ object Button {
 
   fun clickButton(locator: By) {
     `$`(locator).also { element ->
-      element.shouldBe(Condition.visible).click()
       logger.info("Click button: ${element.text()}")
+      element.shouldBe(Condition.visible).click()
     }
   }
 }

@@ -7,16 +7,16 @@ import core.util.YAMLreader
 import java.lang.System.getProperty
 
 open class DataDriverProvider {
-  private val browserType: BrowserType? =
-    getProperty(BROWSER_TYPE_SYSTEM_PROPERTY_NAME)?.let { BrowserType.valueOf(it) }
 
   private val filePath: String = "src/main/resources/driverConfig.yaml"
 
   fun getConfig(): DriverConfig {
     val config: DriverConfig = YAMLreader.readConfig(filePath, DriverConfig::class.java)
-    if (browserType != null) {
-      config.browserType = browserType
+
+    getProperty(BROWSER_TYPE_SYSTEM_PROPERTY_NAME)?.let { browserTypeSystemProperty ->
+      config.browserType = BrowserType.valueOf(browserTypeSystemProperty)
     }
+
     return config
   }
 }
