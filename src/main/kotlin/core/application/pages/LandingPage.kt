@@ -31,7 +31,7 @@ class LandingPage : BasePage() {
     clickButton(requestLoanButton)
   }
 
-  fun requestLoanButtonIsDisplayed() {
+  fun verifyRequestLoanButtonIsDisplayed() {
     `$`(requestLoanButton).shouldBe(Condition.visible)
   }
 }

@@ -1,6 +1,5 @@
 import com.codeborne.selenide.Selenide.closeWebDriver
 import core.application.app_config.config.AppConfigProvider
-import core.holder.StaticContextHolder
 import core.holder.StaticContextHolder.appConfic
 import core.holder.StaticContextHolder.clearContext
 import org.junit.jupiter.api.AfterAll
