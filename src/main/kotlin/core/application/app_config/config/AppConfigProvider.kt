@@ -12,10 +12,8 @@ class AppConfigProvider {
 
   fun getAppConfig(): AppConfig {
     val config = YAMLreader.readConfig(filePath, AppConfig::class.java)
-
     config.user = getProperty(SYSTEM_PROPERTY_APP_CONFIG_LOGIN) ?: config.user
     config.pass = getProperty(SYSTEM_PROPERTY_APP_CONFIG_PASSWORD) ?: config.pass
-
     return config
   }
 }

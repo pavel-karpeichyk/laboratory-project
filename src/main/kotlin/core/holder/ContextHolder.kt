@@ -2,5 +2,5 @@ package core.holder
 
 interface ContextHolder {
 
- fun clearContext()
+  fun clearContext()
 }

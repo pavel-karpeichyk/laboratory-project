@@ -18,7 +18,7 @@ class AppConfigTest {
   lateinit var actualLogin: String
 
   @Test
-  fun `verify config after setting and reading system properties`() {
+  fun `verify config with system properties`() {
     setProperty(SYSTEM_PROPERTY_APP_CONFIG_PASSWORD, expectedPass)
     setProperty(SYSTEM_PROPERTY_APP_CONFIG_LOGIN, expectedLogin)
     appConfic = AppConfigProvider().getAppConfig()

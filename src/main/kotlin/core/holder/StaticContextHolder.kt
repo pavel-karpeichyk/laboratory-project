@@ -7,6 +7,6 @@ object StaticContextHolder : ContextHolder {
   var appConfic: AppConfig? = null
 
   override fun clearContext() {
-    appConfic= null
+    appConfic = null
   }
 }
