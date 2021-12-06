@@ -11,7 +11,7 @@ import org.junit.jupiter.api.TestInstance
 abstract class BaseUITest {
 
   @BeforeAll
-  fun `configContext`() {
+  fun configContext() {
     appConfic = AppConfigProvider().getAppConfig()
   }
 

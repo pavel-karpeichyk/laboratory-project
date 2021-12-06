@@ -9,8 +9,8 @@ object Browser {
 
   private val logger: Logger = LogManager.getLogger()
 
-  fun verifyCurrentUrl(url: String): String {
+  fun verifyCurrentUrl(url: String) {
     logger.info("Verify Current Url - $url")
-    return webdriver().shouldHave(url(url)).toString()
+    webdriver().shouldHave(url(url))
   }
 }
