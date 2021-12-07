@@ -1,4 +1,4 @@
-package core.application.pages
+package tasks.locators
 
 class CRMCollectorsPageXpath {
 

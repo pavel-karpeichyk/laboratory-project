@@ -1,4 +1,4 @@
-package core.application.pages
+package tasks.locators
 
 import org.openqa.selenium.By
 
