@@ -30,10 +30,11 @@ dependencies {
   implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.0")
   implementation("org.apache.logging.log4j:log4j-api:2.14.1")
   implementation("org.apache.logging.log4j:log4j-core:2.14.1")
-
   implementation("com.codeborne:selenide:6.0.3")
   testImplementation("org.slf4j:slf4j-log4j12:1.6.6")
   implementation("commons-io:commons-io:2.11.0")
+  implementation("com.squareup.okhttp:okhttp:2.7.5")
+  implementation("com.squareup.okhttp:logging-interceptor:2.7.5")
 }
 
 tasks.test {
