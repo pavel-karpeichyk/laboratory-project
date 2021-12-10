@@ -23,7 +23,7 @@ class ParametrizedCalculatorTest : BaseUITest() {
   @EnumSource(BrowserType::class)
   fun `Submit Landing Page calculator values and verify redirect on Registration Page`(browserType: BrowserType) {
     val expectedUrl: String =
-      "https://${StaticContextHolder.appConfic?.user}:${StaticContextHolder.appConfic?.pass}@${registrationPageUrl}"
+      "https://${StaticContextHolder.appConfig?.user}:${StaticContextHolder.appConfig?.pass}@${registrationPageUrl}"
     setProperty(BROWSER_TYPE_SYSTEM_PROPERTY_NAME, browserType.name)
     DriverConfigSetter().setDriverConfig()
     LandingPageSteps().apply {

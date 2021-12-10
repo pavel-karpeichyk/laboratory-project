@@ -1,19 +1,28 @@
 package core.HTTP.HTTPclient
 
-import com.squareup.okhttp.Call
-import com.squareup.okhttp.Headers
-import com.squareup.okhttp.Response
-import sun.plugin.util.PluginSysUtil.execute
+import okhttp3.Headers
+import okhttp3.Response
+import okhttp3.internal.toHeaderList
 
-class TafResponse() {
+class TafResponse(response: Response) {
 
-fun createResponse(call: Call): Response {
-  return call.execute()
-}
- fun getHeader(response: Response): Headers {
- return response.headers()
-}
-  fun getCookie(header: Headers, name : String) : String? {
-  return header.get(name)
+  private var response: Response = response
+  private var cookieName: String = "Set-Cookie"
+  private var cookieDelimiter: String = ";"
+  private var keyValueDelimiter: String = "="
+
+  private fun getHeader(response: Response): Headers {
+    return response.headers
+  }
+
+  fun getValueFromCookie(name: String): String? {
+    println("HEADERS-> ${getHeader(response).toHeaderList()}")
+    val cookie: String? = getHeader(response)[cookieName]
+    cookie.apply {
+      val cookieList: List<String> = cookie!!.split(cookieDelimiter)
+      val cookieMap: Map<String, String> =
+        cookieList.map { it.split(keyValueDelimiter) }.associate { it.first() to it.last() }
+      return cookieMap[name]
+    }
   }
 }

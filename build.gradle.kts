@@ -33,8 +33,9 @@ dependencies {
   implementation("com.codeborne:selenide:6.0.3")
   testImplementation("org.slf4j:slf4j-log4j12:1.6.6")
   implementation("commons-io:commons-io:2.11.0")
-  implementation("com.squareup.okhttp:okhttp:2.7.5")
-  implementation("com.squareup.okhttp:logging-interceptor:2.7.5")
+
+  implementation("com.squareup.okhttp3:okhttp:4.9.3")
+  implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 }
 
 tasks.test {

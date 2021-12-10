@@ -1,24 +1,28 @@
 package core.HTTP.HTTPclient
 
-import com.squareup.okhttp.Call
-import com.squareup.okhttp.OkHttpClient
-import com.squareup.okhttp.Request
-import com.squareup.okhttp.Response
-import core.application.pages.LandingPage
+import okhttp3.Call
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 
 class LocalHTTPClient : TafHTTPClient {
+  private val pass: String = "pass"
+  private val user: String = "user"
+  private val logger: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
+  private val client = OkHttpClient().newBuilder().addInterceptor(logger)
+    .addInterceptor(ControlStatusInterceptor())
+    .addInterceptor(BasicAuthInterceptor(user, pass))
+    .build()
 
   override fun getClient(): OkHttpClient {
-    return OkHttpClient()
+    return client
   }
 
-  override fun makeGetRequest(url: String) : Request{
-   return  Request.Builder()
-      .url(url)
-      .build()
-  }
-
-  override fun createCall(request: Request): Call {
-    return  getClient().newCall(request)
+  override fun makeGetRequest(url: String): TafResponse {
+    val request: Request = Request.Builder().get().url(url).build()
+    val call: Call = client.newCall(request)
+    val response: Response = call.execute()
+    return TafResponse(response)
   }
 }

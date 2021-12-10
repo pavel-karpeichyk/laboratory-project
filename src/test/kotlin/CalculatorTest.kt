@@ -1,7 +1,7 @@
 import core.application.elements.Browser.verifyCurrentUrl
 import core.application.pages.RegistrationPage
 import core.driver.provider.DriverConfigSetter
-import core.holder.StaticContextHolder.appConfic
+import core.holder.StaticContextHolder.appConfig
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import steps.LandingPageSteps
@@ -15,7 +15,7 @@ class CalculatorTest : BaseUITest() {
 
   @Test
   fun `Submit Landing Page calculator values and verify redirect on Registration Page`() {
-    val expectedUrl: String = "https://${appConfic?.user}:${appConfic?.pass}@${registrationPageUrl}"
+    val expectedUrl: String = "https://${appConfig?.user}:${appConfig?.pass}@${registrationPageUrl}"
     DriverConfigSetter().setDriverConfig()
     LandingPageSteps().apply {
       openLandingPage()

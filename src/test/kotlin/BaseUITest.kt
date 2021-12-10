@@ -1,6 +1,6 @@
 import com.codeborne.selenide.Selenide.closeWebDriver
 import core.application.app_config.config.AppConfigProvider
-import core.holder.StaticContextHolder.appConfic
+import core.holder.StaticContextHolder.appConfig
 import core.holder.StaticContextHolder.clearContext
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
@@ -12,7 +12,7 @@ abstract class BaseUITest {
 
   @BeforeAll
   fun configContext() {
-    appConfic = AppConfigProvider().getAppConfig()
+    appConfig = AppConfigProvider().getAppConfig()
   }
 
   @AfterEach
