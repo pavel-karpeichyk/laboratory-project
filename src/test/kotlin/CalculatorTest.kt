@@ -1,3 +1,4 @@
+import core.application.app_config.config.AppConfigProvider
 import core.application.elements.Browser.verifyCurrentUrl
 import core.application.pages.RegistrationPage
 import core.driver.provider.DriverConfigSetter
@@ -15,7 +16,7 @@ class CalculatorTest : BaseUITest() {
 
   @Test
   fun `Submit Landing Page calculator values and verify redirect on Registration Page`() {
-    val expectedUrl: String = "https://${appConfig?.user}:${appConfig?.pass}@${registrationPageUrl}"
+    val expectedUrl: String = AppConfigProvider().getUrlWithBasicAuthentification(registrationPageUrl)
     DriverConfigSetter().setDriverConfig()
     LandingPageSteps().apply {
       openLandingPage()

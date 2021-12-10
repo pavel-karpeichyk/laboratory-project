@@ -6,7 +6,7 @@ import core.holder.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_PASSWORD
 import core.util.YAMLreader
 import java.lang.System.getProperty
 
-class AppConfigProvider() {
+class AppConfigProvider {
 
   private val filePath: String = "src/test/resources/app_config.yaml"
   private val config = YAMLreader.readConfig(filePath, AppConfig::class.java)
@@ -21,11 +21,7 @@ class AppConfigProvider() {
     return "https://${config.host}"
   }
 
-  fun getHostWithBasicAuthentification(): String {
-    return "https://${config.user}:${config.pass}@${config.host}"
-  }
-
-  fun getUrlWithRegistrationEndPoint(): String{
-    return "https://${config.user}:${config.pass}@${config.host}${config.registrationEndPoint}"
+  fun getUrlWithBasicAuthentification(endpoint: String): String {
+    return "https://${config.user}:${config.pass}@$endpoint"
   }
 }
