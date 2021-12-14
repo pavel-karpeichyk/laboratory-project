@@ -2,16 +2,14 @@ package core.application.pages
 
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
-import core.application.app_config.config.AppConfigProvider
-import core.application.app_config.model.AppConfig
 import core.application.elements.Button.clickButton
 import core.application.elements.Input.setInputValue
+import core.holder.StaticContextHolder.getConfig
 import org.openqa.selenium.By
 
 class LandingPage : BasePage() {
 
-  private var appConfig: AppConfig = AppConfigProvider().getAppConfig()
-  override val url: String = AppConfigProvider().getUrlWithBasicAuthentification(appConfig.host)
+  override val url: String = getConfig().getBaseUrlWithAuth()
   private val acceptCoockiesButton: By = By.xpath("//button[@aria-label='Aceptar todo']")
   private val loanPeriodInput: By = By.id("loanDays")
   private val loanAmountInput: By = By.id("loanAmount")

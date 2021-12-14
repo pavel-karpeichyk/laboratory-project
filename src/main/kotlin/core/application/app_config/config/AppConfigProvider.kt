@@ -16,12 +16,4 @@ class AppConfigProvider {
     config.pass = getProperty(SYSTEM_PROPERTY_APP_CONFIG_PASSWORD) ?: config.pass
     return config
   }
-
-  fun getHostUrl(): String {
-    return "https://${config.host}"
-  }
-
-  fun getUrlWithBasicAuthentification(endpoint: String): String {
-    return "https://${config.user}:${config.pass}@$endpoint"
-  }
 }

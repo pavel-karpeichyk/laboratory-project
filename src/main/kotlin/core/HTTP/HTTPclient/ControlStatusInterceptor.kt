@@ -10,7 +10,7 @@ class ControlStatusInterceptor : Interceptor {
     val request: Request = chain.request()
     val response: Response = chain.proceed(request)
     val statusCode: Int = response.code
-    if (!(statusCode == 200 || statusCode == 201)) throw IllegalStateException("Unexpected http call status code :$statusCode")
+    if (statusCode !in 200..201) throw IllegalStateException("Unexpected http call status code :$statusCode")
     return response
   }
 }
