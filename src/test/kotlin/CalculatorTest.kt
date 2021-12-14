@@ -8,8 +8,8 @@ import steps.LandingPageSteps
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CalculatorTest : BaseUITest() {
 
-  private val loanDays: String = "7"
-  private val amount: String = "100"
+  private val expectedLoanDays: String = "7"
+  private val expectedAmount: String = "100"
 
   @Test
   fun `Submit Landing Page calculator values and verify redirect on Registration Page`() {
@@ -18,7 +18,7 @@ class CalculatorTest : BaseUITest() {
     LandingPageSteps().apply {
       openLandingPage()
       clickAcceptCoockiesButton()
-      fillCalculatorForm(amount, loanDays)
+      fillCalculatorForm(expectedAmount, expectedLoanDays)
       clickRequestButton()
     }
     verifyCurrentUrl(expectedUrl)

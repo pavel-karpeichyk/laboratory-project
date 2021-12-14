@@ -8,13 +8,13 @@ import steps.RegistrationPageSteps
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CallRegistrationTest : BaseTest() {
 
-  private var name: String = "AuthUser"
+  private var expectedUserTokenCookieName: String = "AuthUser"
 
   @Test
-  fun `verify user token in response from registration endpoint`() {
+  fun `verify AuthUser token exists in registration response`() {
     val registrationEndpointUrl: String = RegistrationPageSteps().getPageUrl()
     val response: TafResponse = LocalHTTPClient().makeGetRequest(registrationEndpointUrl)
-    val expectedCookie: String? = response.getValueFromCookie(name)
-    assertNotNull(expectedCookie, "Cookie equals null")
+    val expectedCookie: String? = response.getValueFromCookie(expectedUserTokenCookieName)
+    assertNotNull(expectedCookie, "AuthUser token not found in registration response")
   }
 }

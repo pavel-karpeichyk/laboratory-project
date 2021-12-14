@@ -4,8 +4,8 @@ data class AppConfig(
   var user: String,
   var pass: String,
   val host: String,
-  val registrationApiEndPoint: String,
-  val registrationUiEndPoint: String
+  val registrationApiEndpoint: String,
+  val registrationUiEndpoint: String
 ) {
   companion object {
     private const val PROTOCOL_HTTPS = "https://"
