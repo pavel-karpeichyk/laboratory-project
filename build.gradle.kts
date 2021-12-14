@@ -47,7 +47,7 @@ dependencies {
   testImplementation("org.slf4j:slf4j-log4j12:$slf4jLog4j12")
   implementation("commons-io:commons-io:$commonsIo")
   implementation("com.squareup.okhttp3:okhttp:$okHttp")
-  implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+  implementation("com.squareup.okhttp3:logging-interceptor:$loggingInterceptor")
 }
 
 tasks.test {
