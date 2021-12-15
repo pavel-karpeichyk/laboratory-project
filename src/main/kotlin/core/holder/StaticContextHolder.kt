@@ -4,9 +4,11 @@ import core.application.app_config.model.AppConfig
 
 object StaticContextHolder : ContextHolder {
 
-  var appConfic: AppConfig? = null
+  var appConfig: AppConfig? = null
+
+  override fun getConfig(): AppConfig = appConfig ?: throw IllegalArgumentException("Context not initialisation")
 
   override fun clearContext() {
-    appConfic = null
+    appConfig = null
   }
 }
