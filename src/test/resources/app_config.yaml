@@ -1,8 +1,14 @@
 user: test
 pass: test
-host: es-foxtrot.moneyman.ru
+host: qa-delivery-es-release.moneyman.ru
 
 #endPoints
-registrationApiEndPoint: /client-area/registration
-registrationUiEndPoint: /client-area/#/registration?
+registrationApiEndpoint: /client-area/registration
+registrationUiEndpoint: /client-area/#/registration?
+crmLoginEndpoint: /secure/new-admin/index.html#/login
+
+cmrUserConfig:
+  login: admmin
+  password: nimda2012
+  captcha: 11111
 
