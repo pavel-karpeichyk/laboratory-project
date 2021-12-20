@@ -13,7 +13,6 @@ val slf4jLog4j12: String by project
 val commonsIo: String by project
 val okHttp: String by project
 val loggingInterceptor: String by project
-val wiremockVersion: String by project
 val retrofitVersion: String by project
 val converterGsonVersion: String by project
 
@@ -51,7 +50,6 @@ dependencies {
   implementation("commons-io:commons-io:$commonsIo")
   implementation("com.squareup.okhttp3:okhttp:$okHttp")
   implementation("com.squareup.okhttp3:logging-interceptor:$loggingInterceptor")
-  testImplementation("com.github.tomakehurst:wiremock:$wiremockVersion")
   implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
   implementation("com.squareup.retrofit2:converter-gson:$converterGsonVersion")
 }

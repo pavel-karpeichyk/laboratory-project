@@ -10,18 +10,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
   private var retrofit: Retrofit? = null
-  private val pass: String = getConfig().pass
-  private val user: String = getConfig().user
 
   fun getRetrofitClient(baseUrl: String): Retrofit? {
-    val httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
+    val client: OkHttpClient = with(getConfig()){OkHttpClient.Builder()
       .addInterceptor(LoggerInterceptor().getLogger())
-      .addInterceptor(BasicAuthInterceptor(user, pass))
+      .addInterceptor(BasicAuthInterceptor(user, pass)).build()}
 
     retrofit = Retrofit.Builder()
       .baseUrl(baseUrl)
       .addConverterFactory(GsonConverterFactory.create())
-      .client(httpClient.build())
+      .client(client)
       .build() ?: throw IllegalArgumentException("Client retrofit not initialisation")
     return retrofit
   }

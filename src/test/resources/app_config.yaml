@@ -5,7 +5,7 @@ host: qa-delivery-es-release.moneyman.ru
 #endPoints
 registrationApiEndpoint: /client-area/registration
 registrationUiEndpoint: /client-area/#/registration?
-crmLoginEndpoint: /secure/new-admin/index.html#/login
+crmLoginEndpoint: /secure/rest/sign/in
 
 cmrUserConfig:
   login: admmin
