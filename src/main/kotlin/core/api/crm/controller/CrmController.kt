@@ -20,7 +20,6 @@ class CrmController {
   fun authCrm(): TafResponse {
     val callSync: Call<CrmUserResponse> = service.singInUser(userCRM)
     val retrofitResponse: Response<CrmUserResponse> = callSync.execute()
-    val response: okhttp3.Response = AdapterResponse().adeptToOkHttpResponse(retrofitResponse)
-    return TafResponse(response)
+    return TafResponse(retrofitResponse.raw())
   }
 }
