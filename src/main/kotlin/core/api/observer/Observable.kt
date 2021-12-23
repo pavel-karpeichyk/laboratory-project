@@ -1,4 +1,4 @@
-package core.holder
+package core.api.observer
 
 interface Observable {
   fun registerObserver(observer: Observer)
