@@ -5,6 +5,7 @@ import core.api.crm.model.CrmUserRequest
 import core.api.crm.model.CrmUserResponse
 import core.api.crm.retrofit.client.RetrofitClient.getRetrofitClient
 import core.api.crm.service.CrmAuthService
+import core.holder.DynamicContextHolder
 import core.holder.StaticContextHolder.getConfig
 import retrofit2.Call
 import retrofit2.Response
@@ -20,6 +21,8 @@ class CrmController {
   fun authCrm(): TafResponse {
     val callSync: Call<CrmUserResponse> = service.singInUser(userCRM)
     val retrofitResponse: Response<CrmUserResponse> = callSync.execute()
-    return TafResponse(retrofitResponse.raw())
+    val tafResponse: TafResponse = TafResponse(retrofitResponse.raw())
+    DynamicContextHolder.getConfig().sessionContext.serviceResponse = tafResponse
+    return tafResponse
   }
 }

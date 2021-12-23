@@ -2,26 +2,32 @@ package core.holder
 
 import core.api.HTTPclient.TafResponse
 
-class SessionContext : Subject {
-  var serviceResponse: TafResponse? = null
+class SessionContext : Observable {
 
+  private var observers: ArrayList<Observer> = ArrayList()
+  private val cookieName = "AuthUser"
+  var authUserTokenValue: String? = null
+  var serviceResponse: TafResponse? = null
     set(value) {
       field = value
-       notifyObserver()
+      notifyObserver()
     }
-  var authUserTokenValue: String? = null
+
+  fun getNameCookie() = cookieName
+
+  init {
+    this.registerObserver(SessionContextObserver(this))
+  }
 
   override fun registerObserver(observer: Observer) {
-    TODO("Not yet implemented")
+    observers.add(observer)
   }
 
   override fun unregisterObserver(observer: Observer) {
-    TODO("Not yet implemented")
+    observers.remove(observer)
   }
 
   override fun notifyObserver() {
-    if(serviceResponse?.getValueFromCookie("widwu")!=null){
-       authUserTokenValue = serviceResponse?.getValueFromCookie("widwu")
-    }
+    observers.forEach { it.update() }
   }
 }

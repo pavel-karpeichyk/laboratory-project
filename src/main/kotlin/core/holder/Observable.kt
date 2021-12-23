@@ -1,6 +1,6 @@
 package core.holder
 
-interface Subject {
+interface Observable {
   fun registerObserver(observer: Observer)
   fun unregisterObserver(observer: Observer)
   fun notifyObserver()
