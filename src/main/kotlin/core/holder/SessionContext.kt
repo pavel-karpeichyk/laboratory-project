@@ -8,7 +8,7 @@ import core.api.observer.SessionContextObserver
 class SessionContext : Observable {
 
   private var observers: ArrayList<Observer> = ArrayList()
-  private val cookieName = "AuthUser"
+  private val cookieName: String = "AuthUser"
   var authUserTokenValue: String? = null
   var serviceResponse: TafResponse? = null
     set(value) {
