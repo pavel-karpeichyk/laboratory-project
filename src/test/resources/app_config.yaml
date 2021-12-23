@@ -1,6 +1,6 @@
 user: test
 pass: test
-host: qa-delivery-es-release.moneyman.ru
+host: es-bravo.moneyman.ru
 
 #endPoints
 registrationApiEndpoint: /client-area/registration
@@ -8,7 +8,7 @@ registrationUiEndpoint: /client-area/#/registration?
 crmLoginEndpoint: /secure/rest/sign/in
 
 cmrUserConfig:
-  login: admmin
-  password: nimda2012
-  captcha: 11111
+  login: test
+  password: test
+  captcha: test
 
