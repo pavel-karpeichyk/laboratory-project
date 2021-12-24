@@ -4,10 +4,12 @@ import core.holder.SessionContext
 
 class SessionContextObserver(private val sessionContext: SessionContext) : Observer {
 
+  private val cookieName: String = "AuthUser"
+
   override fun update() {
-    val valueCookie: String? = sessionContext.serviceResponse?.getValueFromCookie(sessionContext.getNameCookie())
-    if (valueCookie != null) {
-      sessionContext.authUserTokenValue = valueCookie
+    val valueFromCookie: String? = sessionContext.serviceResponse?.getValueFromCookie(cookieName)
+    if (valueFromCookie != null) {
+      sessionContext.authUserTokenValue = valueFromCookie
     }
   }
 }

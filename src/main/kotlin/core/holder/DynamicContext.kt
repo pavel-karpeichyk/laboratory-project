@@ -2,5 +2,5 @@ package core.holder
 
 class DynamicContext {
 
-  val sessionContext: SessionContext  by lazy { SessionContext() }
+  val sessionContext: SessionContext by lazy { SessionContext() }
 }

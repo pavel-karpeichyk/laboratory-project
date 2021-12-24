@@ -5,32 +5,18 @@ import core.api.observer.Observable
 import core.api.observer.Observer
 import core.api.observer.SessionContextObserver
 
-class SessionContext : Observable {
+class SessionContext() : Observable {
 
-  private var observers: ArrayList<Observer> = ArrayList()
-  private val cookieName: String = "AuthUser"
+  override var observers: ArrayList<Observer> = ArrayList()
+
+  init {
+    this.registerObserver(SessionContextObserver(this))
+  }
+
   var authUserTokenValue: String? = null
   var serviceResponse: TafResponse? = null
     set(value) {
       field = value
       notifyObserver()
     }
-
-  fun getNameCookie() = cookieName
-
-  init {
-    this.registerObserver(SessionContextObserver(this))
-  }
-
-  override fun registerObserver(observer: Observer) {
-    observers.add(observer)
-  }
-
-  override fun unregisterObserver(observer: Observer) {
-    observers.remove(observer)
-  }
-
-  override fun notifyObserver() {
-    observers.forEach { it.update() }
-  }
 }

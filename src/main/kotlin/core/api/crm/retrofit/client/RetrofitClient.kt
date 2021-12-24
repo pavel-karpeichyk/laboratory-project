@@ -15,7 +15,7 @@ object RetrofitClient {
       .addInterceptor(BasicAuthInterceptor(user, pass)).build()
   }
 
-  fun getRetrofitClient(baseUrl: String): Retrofit? {
+  fun getRetrofitClient(baseUrl: String): Retrofit {
     return Retrofit.Builder()
       .baseUrl(baseUrl)
       .addConverterFactory(GsonConverterFactory.create())
