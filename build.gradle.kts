@@ -13,6 +13,8 @@ val slf4jLog4j12: String by project
 val commonsIo: String by project
 val okHttp: String by project
 val loggingInterceptor: String by project
+val retrofitVersion: String by project
+val converterGsonVersion: String by project
 
 plugins {
   kotlin("jvm") version "1.5.31"
@@ -48,6 +50,8 @@ dependencies {
   implementation("commons-io:commons-io:$commonsIo")
   implementation("com.squareup.okhttp3:okhttp:$okHttp")
   implementation("com.squareup.okhttp3:logging-interceptor:$loggingInterceptor")
+  implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+  implementation("com.squareup.retrofit2:converter-gson:$converterGsonVersion")
 }
 
 tasks.test {

@@ -1,5 +1,7 @@
-package core.HTTP.HTTPclient
+package core.api.HTTPclient
 
+import core.api.interceptors.BasicAuthInterceptor
+import core.api.interceptors.ControlStatusInterceptor
 import core.holder.StaticContextHolder.getConfig
 import okhttp3.Call
 import okhttp3.OkHttpClient

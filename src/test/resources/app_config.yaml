@@ -1,8 +1,14 @@
 user: test
 pass: test
-host: es-foxtrot.moneyman.ru
+host: es-bravo.moneyman.ru
 
 #endPoints
-registrationApiEndPoint: /client-area/registration
-registrationUiEndPoint: /client-area/#/registration?
+registrationApiEndpoint: /client-area/registration
+registrationUiEndpoint: /client-area/#/registration?
+crmLoginEndpoint: /secure/rest/sign/in
+
+cmrUserConfig:
+  login: test
+  password: test
+  captcha: test
 

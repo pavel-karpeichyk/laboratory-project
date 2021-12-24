@@ -1,4 +1,4 @@
-package core.HTTP.HTTPclient
+package core.api.interceptors
 
 import okhttp3.Credentials
 import okhttp3.Interceptor
