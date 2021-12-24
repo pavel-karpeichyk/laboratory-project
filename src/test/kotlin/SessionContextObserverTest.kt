@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class SessionContextObserverTest : BaseTest() {
 
   @Test
-  fun `that AuthUser cookie value set in SessionContext when make CRM authorisation service call`() {
+  fun `verify that AuthUser cookie value set in SessionContext when make CRM authorisation service call`() {
     CrmController().authCrm()
     var expectedAuthUserTokenValue: String? = getConfig().sessionContext.authUserTokenValue
     assertNotNull(expectedAuthUserTokenValue, "AuthUserTokenValue doesn't set in session context")
