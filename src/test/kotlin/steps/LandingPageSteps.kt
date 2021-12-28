@@ -17,7 +17,7 @@ class LandingPageSteps {
   fun clickAcceptCoockiesButton(): LandingPage {
     logger.info("Click Accept Coockies Button")
     return landingPage.apply {
-      clickAcceptCoockiesButton()
+      clickAcceptCookiesButton()
       verifyRequestLoanButtonIsDisplayed()
     }
   }

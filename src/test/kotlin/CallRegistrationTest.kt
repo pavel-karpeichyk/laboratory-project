@@ -1,5 +1,5 @@
-import core.api.HTTPclient.LocalHTTPClient
-import core.api.HTTPclient.TafResponse
+import core.api.http.LocalHTTPClient
+import core.api.http.TafResponse
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance

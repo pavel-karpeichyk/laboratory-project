@@ -1,6 +1,6 @@
 package core.api.observer
 
-import core.holder.SessionContext
+import core.holder.dynamic_context_holder.SessionContext
 
 class SessionContextObserver(private val sessionContext: SessionContext) : Observer {
 

@@ -1,4 +1,4 @@
-package core.holder
+package core.holder.static_context_holder
 
 object SystemPropertiesHolder {
    const val BROWSER_TYPE_SYSTEM_PROPERTY_NAME= "browser.type"

@@ -1,7 +1,7 @@
 import com.codeborne.selenide.Selenide.closeWebDriver
 import core.application.app_config.config.AppConfigProvider
-import core.holder.StaticContextHolder.appConfig
-import core.holder.StaticContextHolder.clearContext
+import core.holder.static_context_holder.StaticContextHolder.appConfig
+import core.holder.static_context_holder.StaticContextHolder.clearContext
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll

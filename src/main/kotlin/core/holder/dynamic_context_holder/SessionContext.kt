@@ -1,6 +1,6 @@
-package core.holder
+package core.holder.dynamic_context_holder
 
-import core.api.HTTPclient.TafResponse
+import core.api.http.TafResponse
 import core.api.observer.Observable
 import core.api.observer.Observer
 import core.api.observer.SessionContextObserver

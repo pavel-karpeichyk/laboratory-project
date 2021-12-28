@@ -1,8 +1,9 @@
-package core.api.HTTPclient
+package core.api.http
 
 import core.api.interceptors.BasicAuthInterceptor
 import core.api.interceptors.ControlStatusInterceptor
-import core.holder.StaticContextHolder.getConfig
+import core.application.app_config.model.AppConfig
+import core.holder.static_context_holder.StaticContextHolder.getContext
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -11,12 +12,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 class LocalHTTPClient : TafHTTPClient {
 
-  private val pass: String = getConfig().pass
-  private val user: String = getConfig().user
   private val logger: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
-  private val client = OkHttpClient().newBuilder().addInterceptor(logger)
+  private val client = with(getContext<AppConfig>()){OkHttpClient().newBuilder().addInterceptor(logger)
     .addInterceptor(ControlStatusInterceptor())
-    .addInterceptor(BasicAuthInterceptor(user, pass))
+    .addInterceptor(BasicAuthInterceptor(user, pass))}
     .build()
 
   override fun getClient(): OkHttpClient {

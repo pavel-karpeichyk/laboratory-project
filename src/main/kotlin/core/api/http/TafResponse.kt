@@ -1,4 +1,4 @@
-package core.api.HTTPclient
+package core.api.http
 
 import okhttp3.Headers
 import okhttp3.Response

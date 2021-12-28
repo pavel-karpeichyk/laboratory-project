@@ -2,7 +2,7 @@ import core.application.elements.Browser.verifyCurrentUrl
 import core.application.pages.RegistrationPage
 import core.driver.provider.BrowserType
 import core.driver.provider.DriverConfigSetter
-import core.holder.SystemPropertiesHolder.BROWSER_TYPE_SYSTEM_PROPERTY_NAME
+import core.holder.static_context_holder.SystemPropertiesHolder.BROWSER_TYPE_SYSTEM_PROPERTY_NAME
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest

@@ -1,4 +1,4 @@
-package core.api.HTTPclient
+package core.api.http
 
 interface TafHTTPClient {
 
