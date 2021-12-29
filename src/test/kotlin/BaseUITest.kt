@@ -1,7 +1,6 @@
 import com.codeborne.selenide.Selenide.closeWebDriver
-import core.application.app_config.config.AppConfigProvider
-import core.holder.static_context_holder.StaticContextHolder.appConfig
-import core.holder.static_context_holder.StaticContextHolder.clearContext
+import core.context.constant.AppConfigProvider
+import core.context.constant.StaticContextHolder
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
@@ -12,7 +11,7 @@ abstract class BaseUITest {
 
   @BeforeAll
   fun configContext() {
-    appConfig = AppConfigProvider().getAppConfig()
+    StaticContextHolder.tafContext = AppConfigProvider().getAppConfig()
   }
 
   @AfterEach
@@ -22,6 +21,6 @@ abstract class BaseUITest {
 
   @AfterAll
   fun cleanup() {
-    clearContext()
+    StaticContextHolder.clearContext()
   }
 }

@@ -1,5 +1,5 @@
-import core.api.http.TafResponse
 import core.api.crm.controller.CrmController
+import core.http.response.TafResponse
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 

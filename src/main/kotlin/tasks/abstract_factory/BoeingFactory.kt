@@ -1,12 +1,12 @@
 package tasks.abstract_factory
 
-import tasks.abstract_factory.passenger_plane.PassengerPlane
-import tasks.abstract_factory.cargo_plane.СargoPlane
 import tasks.abstract_factory.cargo_plane.BoeingCargo
+import tasks.abstract_factory.cargo_plane.СargoPlane
 import tasks.abstract_factory.force_plane.BoeingForce
 import tasks.abstract_factory.passenger_plane.BoeingPassenger
+import tasks.abstract_factory.passenger_plane.PassengerPlane
 
-class BoeingFactory(): PlaneFactory {
+class BoeingFactory : PlaneFactory {
 
   override fun createСargoPlane(): СargoPlane {
     println("Boeing Cargo Plane created")

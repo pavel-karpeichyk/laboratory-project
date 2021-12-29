@@ -1,6 +1,5 @@
 import core.api.crm.controller.CrmController
-import core.holder.dynamicContext
-import core.taf_context.dynamic_context.DynamicContextHolder
+import core.context.dynamicContext
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 

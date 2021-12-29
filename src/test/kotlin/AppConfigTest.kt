@@ -1,7 +1,6 @@
-import core.holder.staticContext
-import core.taf_context.static_context.StaticContextHolder
-import core.taf_context.static_context.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_LOGIN
-import core.taf_context.static_context.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_PASSWORD
+import core.context.staticContext
+import core.taf_properties.SystemProperties.SYSTEM_PROPERTY_APP_CONFIG_LOGIN
+import core.taf_properties.SystemProperties.SYSTEM_PROPERTY_APP_CONFIG_PASSWORD
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

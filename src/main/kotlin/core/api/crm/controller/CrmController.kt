@@ -3,10 +3,10 @@ package core.api.crm.controller
 import core.api.crm.model.CrmUserRequest
 import core.api.crm.model.CrmUserResponse
 import core.api.crm.service.CrmAuthService
-import core.api.http.TafResponse
-import core.api.retrofit.client.RetrofitClient.getRetrofitClient
-import core.holder.dynamicContext
-import core.holder.staticContext
+import core.context.dynamicContext
+import core.context.staticContext
+import core.http.response.TafResponse
+import core.http.retrofit.RetrofitClient.getRetrofitClient
 import retrofit2.Call
 import retrofit2.Response
 

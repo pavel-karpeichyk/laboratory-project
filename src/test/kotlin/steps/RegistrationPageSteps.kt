@@ -1,6 +1,6 @@
 package steps
 
-import core.holder.staticContext
+import core.context.staticContext
 
 class RegistrationPageSteps {
 

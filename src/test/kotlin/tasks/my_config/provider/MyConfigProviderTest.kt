@@ -1,9 +1,9 @@
 package tasks.my_config.provider
 
-import tasks.my_config.model.MyModelConfig
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.EnumSource
+import tasks.my_config.model.MyModelConfig
 
 class MyConfigProviderTest {
 
@@ -14,6 +14,7 @@ class MyConfigProviderTest {
     val actualContent: MyModelConfig = MyConfigProvider.getContentFromFile(fileType)
     assertEquals(
       expectedContent, actualContent,
-      "Content from file doesn't equal content from $fileType")
+      "Content from file doesn't equal content from $fileType"
+    )
   }
 }

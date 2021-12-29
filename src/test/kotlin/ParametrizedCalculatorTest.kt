@@ -1,8 +1,8 @@
-import core.application.elements.Browser.verifyCurrentUrl
-import core.application.pages.RegistrationPage
-import core.driver.provider.BrowserType
-import core.driver.provider.DriverConfigSetter
-import core.taf_context.static_context.SystemPropertiesHolder.BROWSER_TYPE_SYSTEM_PROPERTY_NAME
+import core.taf_properties.SystemProperties.BROWSER_TYPE_SYSTEM_PROPERTY_NAME
+import core.ui.driver.BrowserType
+import core.ui.driver.setter.DriverConfigSetter
+import core.ui.elements.Browser.verifyCurrentUrl
+import core.ui.pages.RegistrationPage
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
