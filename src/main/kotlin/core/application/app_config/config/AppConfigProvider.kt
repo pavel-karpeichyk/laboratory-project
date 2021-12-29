@@ -1,8 +1,8 @@
 package core.application.app_config.config
 
 import core.application.app_config.model.AppConfig
-import core.holder.static_context_holder.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_LOGIN
-import core.holder.static_context_holder.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_PASSWORD
+import core.taf_context.static_context.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_LOGIN
+import core.taf_context.static_context.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_PASSWORD
 import core.util.YAMLreader
 import java.lang.System.getProperty
 

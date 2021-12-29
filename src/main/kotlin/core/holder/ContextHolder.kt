@@ -1,7 +1,16 @@
 package core.holder
 
-interface ContextHolder {
+import core.taf_context.TafContext
 
-  fun <T: Context> getContext(): Context
-  fun clearContext()
+interface ContextHolder<T : TafContext> {
+
+  var tafContext: T?
+
+  fun getContext(): T {
+    return tafContext ?: throw IllegalArgumentException("Context not initialisation")
+  }
+
+  fun clearContext() {
+    tafContext = null
+  }
 }
