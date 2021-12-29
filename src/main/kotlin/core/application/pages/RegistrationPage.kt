@@ -1,11 +1,11 @@
 package core.application.pages
 
-import core.application.app_config.model.AppConfig
-import core.holder.static_context_holder.StaticContextHolder.getContext
+import core.holder.staticContext
 
 class RegistrationPage : BasePage() {
 
-  override val url: String = getContext<AppConfig>().run { getUrlWithBasicAuthSelectedEndpoint(registrationUiEndpoint) }
+  override val url: String =
+    staticContext.run { getUrlWithBasicAuthSelectedEndpoint(registrationUiEndpoint) }
 
   fun getPageUrl(): String {
     return url
