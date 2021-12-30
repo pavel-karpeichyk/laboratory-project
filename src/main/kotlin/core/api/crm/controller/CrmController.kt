@@ -4,7 +4,6 @@ import core.api.crm.model.CrmUserRequest
 import core.api.crm.model.CrmUserResponse
 import core.api.crm.service.CrmAuthService
 import core.context.crmUserConfig
-import core.context.dynamicContext
 import core.context.serviceResponse
 import core.context.staticContext
 import core.http.response.TafResponse
