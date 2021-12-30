@@ -7,7 +7,7 @@ import tasks.abstract_factory.force_plane.ForcePlane
 import tasks.abstract_factory.passenger_plane.AirbusPassenger
 import tasks.abstract_factory.passenger_plane.PassengerPlane
 
-class AirbusFactory() : PlaneFactory {
+class AirbusFactory : PlaneFactory {
   override fun createСargoPlane(): СargoPlane {
     println("Airbus Cargo Plane created")
     return AirbusCargo()

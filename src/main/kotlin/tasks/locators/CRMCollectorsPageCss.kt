@@ -18,5 +18,4 @@ class CRMCollectorsPageCss {
   val buttonSearch = "#main button[type='submit']"
 
   val tableArea = "div[class='table-wrapper ng-scope']"
-
 }

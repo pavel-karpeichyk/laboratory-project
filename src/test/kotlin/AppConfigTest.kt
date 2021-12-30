@@ -1,6 +1,6 @@
-import core.holder.StaticContextHolder.getConfig
-import core.holder.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_LOGIN
-import core.holder.SystemPropertiesHolder.SYSTEM_PROPERTY_APP_CONFIG_PASSWORD
+import core.context.staticContext
+import core.taf_properties.SystemProperties.SYSTEM_PROPERTY_APP_CONFIG_LOGIN
+import core.taf_properties.SystemProperties.SYSTEM_PROPERTY_APP_CONFIG_PASSWORD
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -20,8 +20,8 @@ class AppConfigTest : BaseTest() {
   fun `verify config with system properties`() {
     setProperty(SYSTEM_PROPERTY_APP_CONFIG_PASSWORD, expectedPass)
     setProperty(SYSTEM_PROPERTY_APP_CONFIG_LOGIN, expectedLogin)
-    actualPass = getConfig().pass
-    actualLogin = getConfig().user
+    actualPass = staticContext.pass
+    actualLogin = staticContext.user
     assertEquals(expectedLogin, actualLogin, "Expected user $expectedLogin doesn't match actual $actualLogin")
     assertEquals(expectedPass, actualPass, "Expected password $expectedPass doesn't match  actual $actualPass")
   }

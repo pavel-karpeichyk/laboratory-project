@@ -1,6 +1,6 @@
 package steps
 
-import core.application.pages.LandingPage
+import core.ui.pages.LandingPage
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 

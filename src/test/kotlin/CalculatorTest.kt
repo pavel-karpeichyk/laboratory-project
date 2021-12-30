@@ -1,6 +1,6 @@
-import core.application.elements.Browser.verifyCurrentUrl
-import core.application.pages.RegistrationPage
-import core.driver.provider.DriverConfigSetter
+import core.ui.driver.setter.DriverConfigSetter
+import core.ui.elements.Browser.verifyCurrentUrl
+import core.ui.pages.RegistrationPage
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import steps.LandingPageSteps

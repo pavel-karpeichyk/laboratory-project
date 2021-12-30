@@ -1,13 +1,13 @@
 package tasks.my_config.provider
 
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import tasks.my_config.factory.ContentFactory
 import tasks.my_config.factory.ContentJSON
 import tasks.my_config.factory.ContentYAML
 import tasks.my_config.model.MyModelConfig
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
 
-class MyConfigProvider() {
+class MyConfigProvider {
 
   companion object {
     private val logger: Logger = LogManager.getLogger("Config")

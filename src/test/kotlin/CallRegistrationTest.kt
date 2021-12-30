@@ -1,5 +1,5 @@
-import core.api.HTTPclient.LocalHTTPClient
-import core.api.HTTPclient.TafResponse
+import core.http.client.LocalHttpClient
+import core.http.response.TafResponse
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -13,7 +13,7 @@ class CallRegistrationTest : BaseTest() {
   @Test
   fun `verify AuthUser token exists in registration response`() {
     val registrationEndpointUrl: String = RegistrationPageSteps().getPageUrl()
-    val response: TafResponse = LocalHTTPClient().makeGetRequest(registrationEndpointUrl)
+    val response: TafResponse = LocalHttpClient().makeGetRequest(registrationEndpointUrl)
     val expectedCookie: String? = response.getValueFromCookie(expectedUserTokenCookieName)
     assertNotNull(expectedCookie, "AuthUser token not found in registration response")
   }

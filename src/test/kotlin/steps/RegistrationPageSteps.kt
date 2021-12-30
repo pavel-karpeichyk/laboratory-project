@@ -1,10 +1,11 @@
 package steps
 
-import core.holder.StaticContextHolder.getConfig
+import core.context.staticContext
 
 class RegistrationPageSteps {
 
-  private val registrationUrl: String = getConfig().run { getUrlWithBasicAuthSelectedEndpoint(registrationApiEndpoint) }
+  private val registrationUrl: String =
+    staticContext.run { getUrlWithBasicAuthSelectedEndpoint(registrationApiEndpoint) }
 
   fun getPageUrl(): String {
     return registrationUrl

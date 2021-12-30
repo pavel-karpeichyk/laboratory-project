@@ -39,5 +39,5 @@ Configuration:
     Root:
       level: info
       AppenderRef:
-       - ref: File
-       - ref: STDOUT
+        - ref: File
+        - ref: STDOUT
