@@ -52,6 +52,8 @@ dependencies {
   implementation("com.squareup.okhttp3:logging-interceptor:$loggingInterceptor")
   implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
   implementation("com.squareup.retrofit2:converter-gson:$converterGsonVersion")
+  implementation("com.github.tomakehurst:wiremock:2.27.2")
+  testImplementation("com.github.tomakehurst:wiremock-standalone:2.27.2")
 }
 
 tasks.test {

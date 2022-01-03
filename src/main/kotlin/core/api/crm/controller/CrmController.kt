@@ -13,11 +13,11 @@ import retrofit2.Response
 
 class CrmController {
 
-  private val baseUrl = staticContext.getBaseUrl()
+  //private val baseUrl = staticContext.getBaseUrl()
   private val userCRM: CrmUserRequest = with(crmUserConfig) {
     CrmUserRequest(login, password, captcha)
   }
-  private val service: CrmAuthService = getRetrofitClient(baseUrl).create(CrmAuthService::class.java)
+  private val service: CrmAuthService = getRetrofitClient("http://127.0.0.1:8080").create(CrmAuthService::class.java)
 
   fun authCrm(): TafResponse {
     val callSync: Call<CrmUserResponse> = service.singInUser(userCRM)

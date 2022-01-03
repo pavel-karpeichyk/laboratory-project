@@ -12,7 +12,8 @@ object RetrofitClient {
   private val client: OkHttpClient = with(staticContext) {
     OkHttpClient.Builder()
       .addInterceptor(LoggerInterceptor().getLogger())
-      .addInterceptor(BasicAuthInterceptor(user, pass)).build()
+     // .addInterceptor(BasicAuthInterceptor(user, pass))
+      .build()
   }
 
   fun getRetrofitClient(baseUrl: String): Retrofit {

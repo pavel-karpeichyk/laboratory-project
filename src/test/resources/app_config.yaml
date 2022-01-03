@@ -1,5 +1,8 @@
 user: test
-pass: test
+pass: tes
+#host:  qa-delivery-es-release.moneyman.ru
+#host:  mmes-PR-1109.idfaws.com
+#host:  mmes-master.idfaws.com
 host: es-bravo.moneyman.ru
 
 #endPoints
@@ -8,7 +11,7 @@ registrationUiEndpoint: /client-area/#/registration?
 crmLoginEndpoint: /secure/rest/sign/in
 
 cmrUserConfig:
-  login: test
-  password: test
-  captcha: test
+  login: admmin12
+  password: nimda201212
+  captcha: 1111112
 
