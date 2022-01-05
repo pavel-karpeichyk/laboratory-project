@@ -1,23 +1,42 @@
 package core.mock
 
+import com.github.tomakehurst.wiremock.client.MappingBuilder
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
+import com.github.tomakehurst.wiremock.client.WireMock
+import com.github.tomakehurst.wiremock.client.WireMock.post
 import core.mock.client.TafMockClient
 
 class WireMockBuilder : TafMockClient {
 
-  override fun requestStub() {
-    TODO("Not yet implemented")
+  private val host: String = "localhost"
+  private val port: Int = 8080
+  private val wireMockClient: WireMock = WireMock(host, port)
+
+  override fun requestStub(): MappingBuilder? {
+    return post(WireMock.urlEqualTo("/secure/rest/sign/in"))
+      .atPriority(1)
+      .withName("Pavel")
   }
 
   override fun responseStub(): ResponseDefinitionBuilder? {
-    return ResponseDefinitionBuilder().withHeader("Set_Cookie", Cookie().cookieAuthUser()).withStatus(200)
+    return ResponseDefinitionBuilder()
+      .withHeader("Set-Cookie", Cookie().cookieAuthUser())
+      .withStatus(200)
       .withBody(getResponseBodyToString())
   }
 
-  fun getResponseBodyToString(): String?{
-    return  Thread.currentThread().contextClassLoader.getResourceAsStream("src/main/resources/response.json")?.readBytes() ?.toString(Charsets.UTF_8)
+  override fun getClient(): WireMock {
+    return wireMockClient
   }
 
-  override fun getClient() {
+  fun getMappingStub(): MappingBuilder? =
+    WireMockBuilder().requestStub()
+      ?.willReturn(
+        WireMockBuilder().responseStub()
+      )
+
+  private fun getResponseBodyToString(): String? {
+    return Thread.currentThread().contextClassLoader.getResourceAsStream("response.json")
+      ?.readBytes()?.toString(Charsets.UTF_8)
   }
 }
