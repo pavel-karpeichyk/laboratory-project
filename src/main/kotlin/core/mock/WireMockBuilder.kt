@@ -4,29 +4,31 @@ import com.github.tomakehurst.wiremock.client.MappingBuilder
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.client.WireMock.post
+import core.context.staticContext
 import core.mock.client.TafMockClient
+import core.mock.config.CrmMockConfig
 
 class WireMockBuilder : TafMockClient {
 
-  private val host: String = "localhost"
-  private val port: Int = 8080
-  private val wireMockClient: WireMock = WireMock(host, port)
+  private lateinit var wireMockClient: WireMock
 
   override fun requestStub(): MappingBuilder? {
-    return post(WireMock.urlEqualTo("/secure/rest/sign/in"))
-      .atPriority(1)
-      .withName("Pavel")
+    return with(CrmMockConfig) {
+      post(WireMock.urlEqualTo(staticContext.crmLoginEndpoint))
+        .atPriority(priority)
+        .withName(mockName)
+    }
   }
 
-  override fun responseStub(): ResponseDefinitionBuilder? {
+  fun responseStub(): ResponseDefinitionBuilder? {
     return ResponseDefinitionBuilder()
       .withHeader("Set-Cookie", Cookie().cookieAuthUser())
       .withStatus(200)
-      .withBody(getResponseBodyToString())
+      .withBody(Convertor().getResponseBodyToString())
   }
 
   override fun getClient(): WireMock {
-    return wireMockClient
+    return WireMock(staticContext.localhost, staticContext.port).also { wireMockClient = it }
   }
 
   fun getMappingStub(): MappingBuilder? =
@@ -34,9 +36,4 @@ class WireMockBuilder : TafMockClient {
       ?.willReturn(
         WireMockBuilder().responseStub()
       )
-
-  private fun getResponseBodyToString(): String? {
-    return Thread.currentThread().contextClassLoader.getResourceAsStream("response.json")
-      ?.readBytes()?.toString(Charsets.UTF_8)
-  }
 }

@@ -1,7 +1,6 @@
 user: test
-pass: tes
-host: localhost:8080
-protocol: "http://"
+pass: test
+host: es-bravo.moneyman.ru
 
 #endPoints
 registrationApiEndpoint: /client-area/registration
@@ -9,7 +8,11 @@ registrationUiEndpoint: /client-area/#/registration?
 crmLoginEndpoint: /secure/rest/sign/in
 
 cmrUserConfig:
-  login: test
-  password: test
-  captcha: test
+ login: admmin12
+ password: nimda201212
+ captcha: 1111112
+
+#wire mock config
+localhost: localhost
+port: 8080
 

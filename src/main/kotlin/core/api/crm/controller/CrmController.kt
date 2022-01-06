@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class CrmController {
 
-  private val baseUrl = staticContext.getBaseUrl()
+  private val baseUrl = staticContext.getLocalhostUrl()
   private val userCRM: CrmUserRequest = with(crmUserConfig) {
     CrmUserRequest(login, password, captcha)
   }
