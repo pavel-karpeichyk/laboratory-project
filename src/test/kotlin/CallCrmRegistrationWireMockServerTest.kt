@@ -22,7 +22,7 @@ fun getMockUrl(){
 
   @Test
   fun `setup wiremock server and verify AuthUser token exists in cookie`() {
-    stubFor((wireMockBuilder.getMappingStub(cmrMockConfig))?.willReturn(wireMockBuilder.responseStub()))
+    stubFor((wireMockBuilder.getMappingStub(cmrMockConfig))?.willReturn(wireMockBuilder.responseStub(cmrMockConfig)))
     val response: TafResponse = CrmController().authCrm(wireMockUrl)
     val expectedCookie = response.getValueFromCookie(expectedUserTokenCookieName)
     Assertions.assertNotNull(expectedCookie, "AuthUser token not found in registration response")

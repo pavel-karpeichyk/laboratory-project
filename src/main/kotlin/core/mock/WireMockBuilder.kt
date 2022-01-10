@@ -6,18 +6,17 @@ import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.client.WireMock.post
 import core.context.staticContext
 import core.mock.client.TafMockClient
-import core.mock.config.CrmMockConfig
 import core.mock.config.MockConfig
 
 class WireMockBuilder : TafMockClient {
 
   private lateinit var wireMockClient: WireMock
 
-  fun responseStub(): ResponseDefinitionBuilder? {
-    return with(CrmMockConfig) {
+  fun responseStub(mockConfig: MockConfig): ResponseDefinitionBuilder? {
+    return with(mockConfig) {
       ResponseDefinitionBuilder()
         .withHeader(header.keys.elementAt(0), header["Set-Cookie"])
-        .withStatus(status)
+        .withStatus(status!!)
         .withBody(body)
     }
   }
@@ -34,7 +33,7 @@ class WireMockBuilder : TafMockClient {
         .atPriority(priority)
         .withName(mockName)
         ?.willReturn(
-          WireMockBuilder().responseStub()
+          WireMockBuilder().responseStub(mockConfig)
         )
     }
 }
