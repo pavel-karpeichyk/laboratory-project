@@ -11,9 +11,9 @@ import core.http.retrofit.RetrofitClient.getRetrofitClient
 import retrofit2.Call
 import retrofit2.Response
 
-class CrmController() {
+class CrmController {
 
-  private var baseUrl = staticContext.getBaseUrl()
+  private val baseUrl = staticContext.getBaseUrl()
   private val userCRM: CrmUserRequest = with(crmUserConfig) {
     CrmUserRequest(login, password, captcha)
   }
