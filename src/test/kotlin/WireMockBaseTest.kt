@@ -15,7 +15,6 @@ abstract class WireMockBaseTest : BaseTest() {
   fun setupWireMockServer() {
     wireMockServer.start()
     wireMockBuilder.getClient()
-    stubFor((wireMockBuilder.getMappingStub())?.willReturn(wireMockBuilder.responseStub()))
   }
 
   @AfterAll

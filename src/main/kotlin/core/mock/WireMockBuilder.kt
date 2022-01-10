@@ -7,6 +7,7 @@ import com.github.tomakehurst.wiremock.client.WireMock.post
 import core.context.staticContext
 import core.mock.client.TafMockClient
 import core.mock.config.CrmMockConfig
+import core.mock.config.MockConfig
 
 class WireMockBuilder : TafMockClient {
 
@@ -22,13 +23,13 @@ class WireMockBuilder : TafMockClient {
   }
 
   override fun getClient(): WireMock {
-    return WireMock(staticContext.wireMockClientConfig.localhost, staticContext.wireMockClientConfig.port).also {
+    return WireMock(staticContext.wireMockClientConfig.localHost, staticContext.wireMockClientConfig.port).also {
       wireMockClient = it
     }
   }
 
-  override fun getMappingStub(): MappingBuilder? =
-    with(CrmMockConfig) {
+  override fun getMappingStub(mockConfig: MockConfig): MappingBuilder? =
+    with(mockConfig) {
       post(WireMock.urlEqualTo(staticContext.crmLoginEndpoint))
         .atPriority(priority)
         .withName(mockName)

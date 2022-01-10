@@ -24,7 +24,7 @@ class CallCrmRegistrationWireMockStandaloneTest : BaseTest() {
 
   @Test
   fun `setup wiremock standalone server and verify AuthUser token exists in cookie`() {
-    val response: TafResponse = CrmController().authCrm(staticContext.getLocalhostUrl())
+    val response: TafResponse = CrmController().authCrm(staticContext.getWireMockUrl())
     val expectedCookie = response.getValueFromCookie(expectedUserTokenCookieName)
     Assertions.assertNotNull(expectedCookie, "AuthUser token not found in registration response")
   }

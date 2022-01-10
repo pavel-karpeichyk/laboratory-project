@@ -12,7 +12,7 @@ class StubMappingService {
 
   fun getStub(mockConfig: MockConfig): StubMapping {
     var customStub: StubMapping? = null
-    val stub: StubMapping = client.register(wireMockBuilder.getMappingStub())
+    val stub: StubMapping = client.register(wireMockBuilder.getMappingStub(mockConfig))
     if (verifyStub(stub)) {
       customStub = stub
     }

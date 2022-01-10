@@ -18,7 +18,7 @@ data class AppConfig(
   }
 
   fun getBaseUrl() = "$PROTOCOL_HTTPS$host"
-  fun getLocalhostUrl() = "$PROTOCOL_HTTP${wireMockClientConfig.localhost}:${wireMockClientConfig.port}"
+  fun getWireMockUrl() = "$PROTOCOL_HTTP${wireMockClientConfig.localHost}:${wireMockClientConfig.port}"
   fun getBaseUrlWithAuth() = "$PROTOCOL_HTTPS$user:$pass@$host"
   fun getUrlWithBasicAuthSelectedEndpoint(endpoint: String) = "${getBaseUrlWithAuth()}$endpoint"
 }
