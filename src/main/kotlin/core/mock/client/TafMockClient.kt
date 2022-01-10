@@ -4,6 +4,6 @@ import com.github.tomakehurst.wiremock.client.MappingBuilder
 import com.github.tomakehurst.wiremock.client.WireMock
 
 interface TafMockClient {
-  fun requestStub(): MappingBuilder?
+  fun getMappingStub(): MappingBuilder?
   fun getClient(): WireMock
 }

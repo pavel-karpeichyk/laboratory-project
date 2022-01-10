@@ -54,7 +54,6 @@ dependencies {
   implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
   implementation("com.squareup.retrofit2:converter-gson:$converterGsonVersion")
   implementation("com.github.tomakehurst:wiremock:$wiremockVersion")
-
 }
 
 tasks.test {

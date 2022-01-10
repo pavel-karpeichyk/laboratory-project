@@ -1,6 +1,6 @@
-package core.mock
+package core.convecters
 
-class Convertor {
+class FileConverter {
 
    fun getResponseBodyToString(): String? {
     return Thread.currentThread().contextClassLoader.getResourceAsStream("CrmSuccessLoginResponse.json")

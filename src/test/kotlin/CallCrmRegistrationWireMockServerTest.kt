@@ -1,5 +1,5 @@
-import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import core.api.crm.controller.CrmController
+import core.context.staticContext
 import core.http.response.TafResponse
 import core.mock.WireMockBuilder
 import org.junit.jupiter.api.Assertions
@@ -12,8 +12,8 @@ class CallCrmRegistrationWireMockServerTest : WireMockBaseTest() {
 
   @Test
   fun `setup wiremock server and verify AuthUser token exists in cookie`() {
-    stubFor((wireMockBuilder.requestStub())?.willReturn(wireMockBuilder.responseStub()))
-    val response: TafResponse = CrmController().authCrm()
+
+    val response: TafResponse = CrmController().authCrm(staticContext.getLocalhostUrl())
     val expectedCookie = response.getValueFromCookie(expectedUserTokenCookieName)
     Assertions.assertNotNull(expectedCookie, "AuthUser token not found in registration response")
   }

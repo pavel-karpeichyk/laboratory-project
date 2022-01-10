@@ -6,4 +6,7 @@ interface MockConfig {
   var id: UUID?
   val priority: Int?
   val mockName: String?
+  val header: Map<String, String>
+  val status: Int?
+  val body: String?
 }

@@ -12,28 +12,28 @@ class WireMockBuilder : TafMockClient {
 
   private lateinit var wireMockClient: WireMock
 
-  override fun requestStub(): MappingBuilder? {
+  fun responseStub(): ResponseDefinitionBuilder? {
     return with(CrmMockConfig) {
-      post(WireMock.urlEqualTo(staticContext.crmLoginEndpoint))
-        .atPriority(priority)
-        .withName(mockName)
+      ResponseDefinitionBuilder()
+        .withHeader(header.keys.elementAt(0), header["Set-Cookie"])
+        .withStatus(status)
+        .withBody(body)
     }
   }
 
-  fun responseStub(): ResponseDefinitionBuilder? {
-    return ResponseDefinitionBuilder()
-      .withHeader("Set-Cookie", Cookie().cookieAuthUser())
-      .withStatus(200)
-      .withBody(Convertor().getResponseBodyToString())
-  }
-
   override fun getClient(): WireMock {
-    return WireMock(staticContext.localhost, staticContext.port).also { wireMockClient = it }
+    return WireMock(staticContext.wireMockClientConfig.localhost, staticContext.wireMockClientConfig.port).also {
+      wireMockClient = it
+    }
   }
 
-  fun getMappingStub(): MappingBuilder? =
-    WireMockBuilder().requestStub()
-      ?.willReturn(
-        WireMockBuilder().responseStub()
-      )
+  override fun getMappingStub(): MappingBuilder? =
+    with(CrmMockConfig) {
+      post(WireMock.urlEqualTo(staticContext.crmLoginEndpoint))
+        .atPriority(priority)
+        .withName(mockName)
+        ?.willReturn(
+          WireMockBuilder().responseStub()
+        )
+    }
 }

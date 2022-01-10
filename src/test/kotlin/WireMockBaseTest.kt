@@ -1,6 +1,6 @@
 import com.github.tomakehurst.wiremock.WireMockServer
-import com.github.tomakehurst.wiremock.client.WireMock.configureFor
-import core.context.staticContext
+import com.github.tomakehurst.wiremock.client.WireMock.stubFor
+import core.mock.WireMockBuilder
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
@@ -9,11 +9,13 @@ import org.junit.jupiter.api.TestInstance
 abstract class WireMockBaseTest : BaseTest() {
 
   private val wireMockServer: WireMockServer = WireMockServer()
+  private val wireMockBuilder: WireMockBuilder = WireMockBuilder()
 
   @BeforeAll
   fun setupWireMockServer() {
     wireMockServer.start()
-    configureFor(staticContext.localhost, staticContext.port)
+    wireMockBuilder.getClient()
+    stubFor((wireMockBuilder.getMappingStub())?.willReturn(wireMockBuilder.responseStub()))
   }
 
   @AfterAll

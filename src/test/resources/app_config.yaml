@@ -12,7 +12,8 @@ cmrUserConfig:
  password: nimda201212
  captcha: 1111112
 
-#wire mock config
-localhost: localhost
-port: 8080
+#wire mock client config
+wireMockClientConfig:
+ localhost: localhost
+ port: 8080
 

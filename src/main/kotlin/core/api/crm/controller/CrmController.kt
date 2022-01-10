@@ -11,15 +11,15 @@ import core.http.retrofit.RetrofitClient.getRetrofitClient
 import retrofit2.Call
 import retrofit2.Response
 
-class CrmController {
+class CrmController() {
 
-  private val baseUrl = staticContext.getLocalhostUrl()
+  private var baseUrl = staticContext.getBaseUrl()
   private val userCRM: CrmUserRequest = with(crmUserConfig) {
     CrmUserRequest(login, password, captcha)
   }
-  private val service: CrmAuthService = getRetrofitClient(baseUrl).create(CrmAuthService::class.java)
 
-  fun authCrm(): TafResponse {
+  fun authCrm(crmUrl: String = baseUrl): TafResponse {
+    val service: CrmAuthService = getRetrofitClient(crmUrl).create(CrmAuthService::class.java)
     val callSync: Call<CrmUserResponse> = service.singInUser(userCRM)
     val retrofitResponse: Response<CrmUserResponse> = callSync.execute()
     val tafResponse: TafResponse = TafResponse(retrofitResponse.raw())
