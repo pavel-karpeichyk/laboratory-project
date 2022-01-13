@@ -7,9 +7,10 @@ interface MockConfig {
   var id: UUID?
   val priority: Int?
   val mockName: String?
-  val header: Map<String, String>
+  var header: Map<String, String>
   val status: Int?
   val responseFilePath: String?
   val body: String?
   var mappingBuilder: MappingBuilder?
+  val mockConfigUrl: String
 }

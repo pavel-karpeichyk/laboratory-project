@@ -1,35 +1,29 @@
 package core.mock
 
+import com.github.tomakehurst.wiremock.admin.model.SingleStubMappingResult
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.stubbing.StubMapping
-import core.mock.client.WireMockClient
+import core.context.staticContext
 import core.mock.config.MockConfig
-import core.mock.config.WireMockConfigBuilder
+import core.mock.config.WireMockMappingBuilder
 
 class WireMockService {
 
-  private var wireMockConfigBuilder: WireMockConfigBuilder = WireMockConfigBuilder()
-  private var client: WireMock = WireMockClient().getClient()
+  private var wireMockConfigBuilder: WireMockMappingBuilder = WireMockMappingBuilder()
+  private var client: WireMock =
+    WireMock(staticContext.wireMockClientConfig.host, staticContext.wireMockClientConfig.port)
 
-  fun getStub(mockConfig: MockConfig): StubMapping {
-    mockConfig.mappingBuilder = wireMockConfigBuilder.getStubConfig(mockConfig)
-    var customStub: StubMapping? = null
+  fun raiseStub(mockConfig: MockConfig): SingleStubMappingResult {
+    mockConfig.mappingBuilder = wireMockConfigBuilder.getStubMapping(mockConfig)
     val stub: StubMapping = stubFor(
       (mockConfig.mappingBuilder)
     )
-    if (verifyStub(stub, mockConfig)) {
-      customStub = stub
-    }
-    return customStub ?: throw IllegalArgumentException("Stub doesn't setup")
+    mockConfig.id = stub.id
+    return client.getStubMapping(mockConfig.id) ?: throw IllegalArgumentException("Stub doesn't raise")
   }
 
-  private fun verifyStub(stub: StubMapping?, mockConfig: MockConfig): Boolean {
-    mockConfig.id = stub?.id
-    return client.allStubMappings().mappings.map { it.id }.contains(mockConfig.id)
-  }
-
-  fun deleteStub() {
-    client.removeMappings()
+  fun deleteStub(mockConfig: MockConfig) {
+    client.getStubMapping(mockConfig.id)
   }
 }

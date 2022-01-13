@@ -3,11 +3,10 @@ package core.mock.config
 import com.github.tomakehurst.wiremock.client.MappingBuilder
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
 import com.github.tomakehurst.wiremock.client.WireMock
-import core.context.staticContext
 
-class WireMockConfigBuilder {
+class WireMockMappingBuilder {
 
-  private fun responseStubConfig(mockConfig: MockConfig): ResponseDefinitionBuilder? {
+  private fun getStubResponseConfig(mockConfig: MockConfig): ResponseDefinitionBuilder? {
     return with(mockConfig) {
       ResponseDefinitionBuilder()
         .withHeader(header.keys.elementAt(0), header["Set-Cookie"])
@@ -16,13 +15,13 @@ class WireMockConfigBuilder {
     }
   }
 
-  fun getStubConfig(mockConfig: MockConfig): MappingBuilder? =
+  fun getStubMapping(mockConfig: MockConfig): MappingBuilder? =
     with(mockConfig) {
-      WireMock.post(WireMock.urlEqualTo(staticContext.crmLoginEndpoint))
+      WireMock.any(WireMock.urlEqualTo(mockConfigUrl))
         .atPriority(priority)
         .withName(mockName)
         ?.willReturn(
-          WireMockConfigBuilder().responseStubConfig(mockConfig)
+          WireMockMappingBuilder().getStubResponseConfig(mockConfig)
         )
     }
 }

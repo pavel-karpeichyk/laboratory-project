@@ -5,10 +5,9 @@ import core.context.crmUserConfig
 
 class CrmRequestBuilder {
 
-  fun getAuthRequest(): CrmUserRequest{
+  fun getCrmUserRequest(): CrmUserRequest{
    return with(crmUserConfig) {
       CrmUserRequest(login, password, captcha)
     }
-
   }
 }
