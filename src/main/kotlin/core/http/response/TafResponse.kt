@@ -14,10 +14,11 @@ class TafResponse(response: Response) {
     return response.headers
   }
 
+  fun getCookie(): String? = getHeaders(response)[cookieName]
+
   fun getValueFromCookie(name: String): String? {
     var cookieValue: String? = null
-    val cookie: String? = getHeaders(response)[cookieName]
-    cookie?.apply {
+    getCookie()?.also { cookie ->
       val cookieList: List<String> = cookie.split(cookieDelimiter)
       val cookieMap: Map<String, String> =
         cookieList.map { it.split(keyValueDelimiter) }.associate { it.first() to it.last() }

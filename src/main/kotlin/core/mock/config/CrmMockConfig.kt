@@ -14,8 +14,8 @@ data class CrmMockConfig(
   override var body: String? = null,
   override var mappingBuilder: MappingBuilder? = null,
   override val mockConfigUrl: String = "/secure/rest/sign/in"
-
 ) : MockConfig {
+
   init {
     if (null == body) {
       body = FileConverter().getResponseBodyAsString(responseFilePath)

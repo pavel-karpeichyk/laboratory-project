@@ -7,11 +7,14 @@ import com.github.tomakehurst.wiremock.client.WireMock
 class WireMockMappingBuilder {
 
   private fun getStubResponseConfig(mockConfig: MockConfig): ResponseDefinitionBuilder? {
-    return with(mockConfig) {
-      ResponseDefinitionBuilder()
-        .withHeader(header.keys.elementAt(0), header["Set-Cookie"])
-        .withStatus(status!!)
+    with(mockConfig) {
+      val responseDefinitionBuilder = WireMock.aResponse()
+      responseDefinitionBuilder.withStatus(status!!)
         .withBody(body)
+      header.forEach {
+        responseDefinitionBuilder.withHeader(it.key, it.value)
+      }
+      return responseDefinitionBuilder
     }
   }
 

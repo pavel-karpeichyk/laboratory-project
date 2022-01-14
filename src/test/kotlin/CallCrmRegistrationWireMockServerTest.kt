@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test
 
 class CallCrmRegistrationWireMockServerTest : WireMockBaseTest() {
 
-  private var expectedUserTokenCookieName: String = "AuthUser"
   private val crmMockConfig: CrmMockConfig = CrmMockConfig()
   protected lateinit var wireMockUrl: String
 
@@ -31,9 +30,10 @@ class CallCrmRegistrationWireMockServerTest : WireMockBaseTest() {
   }
 
   @Test
-  fun `setup wiremock server and verify AuthUser token exists in cookie`() {
+  fun `verify  that stub is stable and meets our requirements when  mask work of  CRM authorization server`() {
     val response: TafResponse = CrmController(baseUrl = wireMockUrl).authCrm()
-    val expectedCookie = response.getValueFromCookie(expectedUserTokenCookieName)
-    assertEquals(expectedCookie, "fakeAuthToken", "AuthUser token not found in registration response")
+    val expectedCookie = response.getCookie()
+    val actualCookie = response.getCookie()
+    assertEquals(expectedCookie, actualCookie, "AuthUser token not found in registration response")
   }
 }

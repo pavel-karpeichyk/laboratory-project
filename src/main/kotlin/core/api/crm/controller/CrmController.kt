@@ -14,8 +14,8 @@ class CrmController(
   private val requestBuilder: CrmRequestBuilder = CrmRequestBuilder()
 ) {
 
-  private val crmUserRequest: CrmUserRequest = requestBuilder.getCrmUserRequest()
-
-  fun authCrm(): TafResponse =
-    TafResponse(service.singInUser(crmUserRequest).execute().raw()).also { serviceResponse = it }
+  fun authCrm(): TafResponse {
+    val crmUserRequest: CrmUserRequest = requestBuilder.getCrmUserRequest()
+    return TafResponse(service.singInUser(crmUserRequest).execute().raw()).also { serviceResponse = it }
+  }
 }
