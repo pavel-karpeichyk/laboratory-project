@@ -1,7 +1,7 @@
 package core.mock
 
 import com.github.tomakehurst.wiremock.client.WireMock
-import core.context.staticContext
+import core.context.wireMockClientConfig
 import core.mock.config.MockConfig
 import core.mock.config.WireMockMappingBuilder
 
@@ -9,8 +9,8 @@ class WireMockService {
 
   private val wireMockConfigBuilder: WireMockMappingBuilder = WireMockMappingBuilder()
   private val client: WireMock = WireMock(
-    staticContext.wireMockClientConfig.host,
-    staticContext.wireMockClientConfig.port
+    wireMockClientConfig.host,
+    wireMockClientConfig.port
   )
 
   fun raiseStub(mockConfig: MockConfig) {

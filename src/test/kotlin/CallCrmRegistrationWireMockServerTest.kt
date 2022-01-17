@@ -2,7 +2,6 @@ import core.api.crm.controller.CrmController
 import core.context.staticContext
 import core.http.response.TafResponse
 import core.mock.config.CrmMockConfig
-import core.mock.controller.WireMockController
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
@@ -13,6 +12,7 @@ class CallCrmRegistrationWireMockServerTest : WireMockBaseTest() {
 
   private val crmMockConfig: CrmMockConfig = CrmMockConfig()
   protected lateinit var wireMockUrl: String
+  private val actualCookieName: String = "Set-Cookie"
 
   @BeforeAll
   fun getMockUrl() {
@@ -21,19 +21,19 @@ class CallCrmRegistrationWireMockServerTest : WireMockBaseTest() {
 
   @BeforeEach
   fun setUpCustomStub() {
-    WireMockController().setUpStub(crmMockConfig)
+    wireMockController.setUpStub(crmMockConfig)
   }
 
   @AfterEach
   fun skipStubs() {
-    WireMockController().removeStub(crmMockConfig)
+    wireMockController.removeStub(crmMockConfig)
   }
 
   @Test
-  fun `verify  that stub is stable and meets our requirements when  mask work of  CRM authorization server`() {
+  fun `verify the AuthUser token in cookie is equals that we set in wireMock response when authorization into CRM with incorrect credentials`() {
     val response: TafResponse = CrmController(baseUrl = wireMockUrl).authCrm()
-    val expectedCookie = response.getCookie()
-    val actualCookie = response.getCookie()
+    val expectedCookie: String? = response.getCookie()
+    val actualCookie: String? = crmMockConfig.header.get(actualCookieName)
     assertEquals(expectedCookie, actualCookie, "AuthUser token not found in registration response")
   }
 }

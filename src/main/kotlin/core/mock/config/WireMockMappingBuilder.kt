@@ -9,8 +9,7 @@ class WireMockMappingBuilder {
   private fun getStubResponseConfig(mockConfig: MockConfig): ResponseDefinitionBuilder? {
     with(mockConfig) {
       val responseDefinitionBuilder = WireMock.aResponse()
-      responseDefinitionBuilder.withStatus(status!!)
-        .withBody(body)
+      responseDefinitionBuilder.withStatus(status!!).withBody(body)
       header.forEach {
         responseDefinitionBuilder.withHeader(it.key, it.value)
       }

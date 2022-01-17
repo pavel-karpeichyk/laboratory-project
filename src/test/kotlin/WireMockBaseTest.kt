@@ -1,6 +1,5 @@
 import com.github.tomakehurst.wiremock.WireMockServer
-import com.github.tomakehurst.wiremock.client.WireMock
-import core.context.staticContext
+import core.mock.controller.WireMockController
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
@@ -9,14 +8,16 @@ import org.junit.jupiter.api.TestInstance
 abstract class WireMockBaseTest : BaseTest() {
 
   private val wireMockServer: WireMockServer = WireMockServer()
+  protected lateinit var wireMockController: WireMockController
 
   @BeforeAll
   fun setupWireMockServer() {
+    wireMockController = WireMockController()
     wireMockServer.start()
   }
 
   @AfterAll
   fun stopWireMockServer() {
-   wireMockServer.stop()
+    wireMockServer.stop()
   }
 }
