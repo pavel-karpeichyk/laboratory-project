@@ -17,8 +17,8 @@ class WireMockMappingBuilder {
     }
   }
 
-  fun getStubMapping(mockConfig: MockConfig): MappingBuilder? =
-    with(mockConfig) {
+  fun getStubMapping(mockConfig: MockConfig): MappingBuilder? {
+    return with(mockConfig) {
       WireMock.any(WireMock.urlEqualTo(mockConfigUrl))
         .atPriority(priority)
         .withName(mockName)
@@ -26,4 +26,5 @@ class WireMockMappingBuilder {
           WireMockMappingBuilder().getStubResponseConfig(mockConfig)
         )
     }
+  }
 }
