@@ -25,12 +25,12 @@ class CallCrmRegistrationWireMockServerTest : WireMockBaseTest() {
   }
 
   @AfterEach
-  fun skipStubs() {
+  fun removeStubs() {
     wireMockController.removeStub(crmMockConfig)
   }
 
   @Test
-  fun `verify the AuthUser token in cookie is equals that we set in wireMock response when authorization into CRM with incorrect credentials`() {
+  fun `verify Wiremock stub for CRM authorisation service`() {
     val response: TafResponse = CrmController(baseUrl = wireMockUrl).authCrm()
     val expectedCookie: String? = response.getCookie()
     val actualCookie: String? = crmMockConfig.header.get(actualCookieName)
