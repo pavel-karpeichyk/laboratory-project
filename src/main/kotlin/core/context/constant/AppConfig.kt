@@ -9,13 +9,16 @@ data class AppConfig(
   val registrationApiEndpoint: String,
   val registrationUiEndpoint: String,
   val crmLoginEndpoint: String,
-  var cmrUserConfig: CrmUserConfig
+  var cmrUserConfig: CrmUserConfig,
+  var wireMockClientConfig: WireMockClientConfig
 ) : TafContext {
   companion object {
     private const val PROTOCOL_HTTPS = "https://"
+    private const val PROTOCOL_HTTP = "http://"
   }
 
   fun getBaseUrl() = "$PROTOCOL_HTTPS$host"
+  fun getWireMockUrl() = "$PROTOCOL_HTTP${wireMockClientConfig.host}:${wireMockClientConfig.port}"
   fun getBaseUrlWithAuth() = "$PROTOCOL_HTTPS$user:$pass@$host"
   fun getUrlWithBasicAuthSelectedEndpoint(endpoint: String) = "${getBaseUrlWithAuth()}$endpoint"
 }

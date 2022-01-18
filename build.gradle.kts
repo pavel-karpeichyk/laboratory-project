@@ -15,6 +15,7 @@ val okHttp: String by project
 val loggingInterceptor: String by project
 val retrofitVersion: String by project
 val converterGsonVersion: String by project
+val wiremockVersion: String by project
 
 plugins {
   kotlin("jvm") version "1.5.31"
@@ -52,6 +53,7 @@ dependencies {
   implementation("com.squareup.okhttp3:logging-interceptor:$loggingInterceptor")
   implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
   implementation("com.squareup.retrofit2:converter-gson:$converterGsonVersion")
+  implementation("com.github.tomakehurst:wiremock:$wiremockVersion")
 }
 
 tasks.test {

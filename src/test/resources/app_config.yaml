@@ -8,7 +8,12 @@ registrationUiEndpoint: /client-area/#/registration?
 crmLoginEndpoint: /secure/rest/sign/in
 
 cmrUserConfig:
-  login: test
-  password: test
-  captcha: test
+ login: admmin12
+ password: nimda201212
+ captcha: 1111112
+
+#wire mock client config
+wireMockClientConfig:
+ localhost: localhost
+ port: 8080
 
