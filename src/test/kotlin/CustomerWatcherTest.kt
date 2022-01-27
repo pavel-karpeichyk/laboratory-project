@@ -52,8 +52,7 @@ class CustomerWatcherTest : BaseTest() {
   }
 
   @Test
-  fun `Submit Landing Page calculator values and verify redirect on Registration Page`() {
-
+  fun `given failed test then screenshot attachments`() {
     DriverConfigSetter().setDriverConfig()
     LandingPageSteps().apply {
       openLandingPage()
