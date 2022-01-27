@@ -14,7 +14,8 @@ class LocalHttpClient : TafHttpClient {
 
   private val logger: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
   private val client = with(staticContext) {
-    OkHttpClient().newBuilder().addInterceptor(logger)
+    OkHttpClient().newBuilder()
+      .addInterceptor(logger)
       .addInterceptor(ControlStatusInterceptor())
       .addInterceptor(BasicAuthInterceptor(user, pass))
   }
