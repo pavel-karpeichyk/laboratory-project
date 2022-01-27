@@ -10,7 +10,7 @@ class ValuerExecutionCondition : ExecutionCondition {
     var result: ConditionEvaluationResult = ConditionEvaluationResult.enabled("Method doesn't  marked my annotation")
 
     when (context?.element?.get()?.isAnnotationPresent(Ban::class.java)) {
-      true -> result = ConditionEvaluationResult.disabled("Method marked my annotation")
+      true -> result = ConditionEvaluationResult.disabled("Method marked Ban annotation")
     }
     return result
   }
