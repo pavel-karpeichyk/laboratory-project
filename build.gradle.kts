@@ -1,11 +1,11 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val junitJupiter: String by project
 val junitJupiterApi: String by project
 val junitJupiterParams: String by project
 val jacksonModuleKotlin: String by project
-val jacksonDataformatYaml: String by project
+val jacksonDataFormatYaml: String by project
 val log4jApi: String by project
 val log4jCore: String by project
 val selenideVersion: String by project
@@ -16,11 +16,16 @@ val loggingInterceptor: String by project
 val retrofitVersion: String by project
 val converterGsonVersion: String by project
 val wiremockVersion: String by project
+val allureVersion: String by project
 
 plugins {
-  kotlin("jvm") version "1.5.31"
+  kotlin("jvm") version "1.6.10"
   idea
+  id("io.qameta.allure") version "2.9.6"
 }
+
+apply(plugin = "org.jetbrains.kotlin.jvm")
+apply(plugin = "io.qameta.allure")
 
 idea {
   project {
@@ -29,6 +34,8 @@ idea {
   }
   module.name = "LaboratoryProject"
 }
+
+
 
 group = "me.user"
 version = "1.0-SNAPSHOT"
@@ -39,11 +46,12 @@ repositories {
 }
 
 dependencies {
+  implementation(kotlin("stdlib"))
   implementation("org.junit.jupiter:junit-jupiter:$junitJupiter")
   testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterApi")
   testImplementation("org.junit.jupiter:junit-jupiter-params:$junitJupiterParams")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonModuleKotlin")
-  implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataformatYaml")
+  implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonDataFormatYaml")
   implementation("org.apache.logging.log4j:log4j-api:$log4jApi")
   implementation("org.apache.logging.log4j:log4j-core:$log4jCore")
   implementation("com.codeborne:selenide:$selenideVersion")
@@ -54,6 +62,12 @@ dependencies {
   implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
   implementation("com.squareup.retrofit2:converter-gson:$converterGsonVersion")
   implementation("com.github.tomakehurst:wiremock:$wiremockVersion")
+
+}
+
+allure {
+  adapter.autoconfigure
+  adapter.aspectjWeaver
 }
 
 tasks.test {
