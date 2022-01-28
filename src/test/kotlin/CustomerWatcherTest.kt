@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Selenide.open
 import core.ui.driver.setter.DriverConfigSetter
 import core.ui.elements.Browser
 import core.watcher.Ban
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
-import steps.LandingPageSteps
 
 @ExtendWith(
   CustomWatcher::class,
@@ -20,8 +20,7 @@ import steps.LandingPageSteps
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CustomerWatcherTest : BaseTest() {
 
-  private val expectedLoanDays: String = "7"
-  private val expectedAmount: String = "100"
+  private val actualUrl: String = "https://www.google.by"
   private val expectedUrl: String = "http//someurl"
 
   @Test
@@ -54,12 +53,7 @@ class CustomerWatcherTest : BaseTest() {
   @Test
   fun `given failed test then screenshot attachments`() {
     DriverConfigSetter().setDriverConfig()
-    LandingPageSteps().apply {
-      openLandingPage()
-      clickAcceptCoockiesButton()
-      fillCalculatorForm(expectedAmount, expectedLoanDays)
-      clickRequestButton()
-    }
+    open(actualUrl)
     Browser.verifyCurrentUrl(expectedUrl)
   }
 }
