@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test
 class CallDatabaseTest : BaseTest() {
 
   private val tafDataBaseClient: TafDatabaseClient = TafDatabaseClient()
-  private val actualValue = "admmin"
+  private val actualValue: String = "admmin"
+  private val titleColumn: String = "login"
 
   @Test
   fun `verify login in data that gets from database`() {
@@ -17,7 +18,7 @@ class CallDatabaseTest : BaseTest() {
       databaseClientConfig.pass
     )
     val resultSingleRow: Map<String, Any> = tafDataBaseClient.selectOneRow(client)
-    val expectedValue = resultSingleRow["login"]
+    val expectedValue = resultSingleRow[titleColumn]
     Assertions.assertEquals(expectedValue, actualValue, "Expected login doesn't match actual")
   }
 }
