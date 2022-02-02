@@ -17,6 +17,8 @@ val retrofitVersion: String by project
 val converterGsonVersion: String by project
 val wiremockVersion: String by project
 val allureVersion: String by project
+val jdbcVersion: String by project
+val mysqlConnectorVersion: String by project
 
 plugins {
   kotlin("jvm") version "1.6.10"
@@ -62,7 +64,8 @@ dependencies {
   implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
   implementation("com.squareup.retrofit2:converter-gson:$converterGsonVersion")
   implementation("com.github.tomakehurst:wiremock:$wiremockVersion")
-
+  implementation ("com.vladsch.kotlin-jdbc:kotlin-jdbc:$jdbcVersion")
+  implementation ("mysql:mysql-connector-java:$mysqlConnectorVersion")
 }
 
 allure {
