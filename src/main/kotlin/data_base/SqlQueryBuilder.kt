@@ -1,10 +1,15 @@
 package data_base
 
 class SqlQueryBuilder {
-  fun getLimitRows(limitRows: String = "1",tableName: String = "es_moneyman.user_account"): String {
-    return "SELECT * FROM $tableName limit $limitRows"
+
+  private val queryLimitRows: String = "SELECT * FROM %s LIMIT %s"
+  private val queryAllRows: String = "SELECT * FROM %s "
+
+  fun getLimitRows(tableName: String, limitRows: String): String {
+    return queryLimitRows.format(tableName, limitRows)
   }
-  fun getAllRows(tableName: String = "es_moneyman.user_account"): String {
-    return "SELECT * FROM $tableName"
+
+  fun getAllRows(tableName: String): String {
+    return queryAllRows.format(tableName)
   }
 }

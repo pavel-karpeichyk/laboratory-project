@@ -4,8 +4,8 @@ import com.vladsch.kotlin.jdbc.Session
 
 interface DatabaseClient {
 
-  fun getClient(urlDB : String, user: String, pass: String) : Session
-  fun selectOneRow(client: Session): Map<String, Any>
-  fun selectAllRows(client : Session): List<HashMap<String, Any>>
-  fun closeDbConnection( client: Session)
+  fun getClient(): Session
+  fun selectOneRow(tableName: String, limitRows: String): Map<String, Any>
+  fun selectAllRows(tableName: String): List<HashMap<String, Any>>
+  fun closeDbConnection()
 }
