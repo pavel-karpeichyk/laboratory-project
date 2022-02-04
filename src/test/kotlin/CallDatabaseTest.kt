@@ -18,7 +18,7 @@ class CallDatabaseTest : BaseTest() {
   }
 
   @AfterAll
-  fun closeDatabase() {
+  fun closeDatabaseConnection() {
     tafDataBaseClient.closeDbConnection()
   }
 
