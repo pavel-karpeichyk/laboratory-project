@@ -1,15 +1,14 @@
 package data_base
 
+import com.vladsch.kotlin.jdbc.SqlQuery
+
 class SqlQueryBuilder {
 
-  private val queryLimitRows: String = "SELECT * FROM %s LIMIT %s"
-  private val queryAllRows: String = "SELECT * FROM %s "
-
-  fun getLimitRows(tableName: String, limitRows: String): String {
-    return queryLimitRows.format(tableName, limitRows)
+  fun getLimitRows(sqlQuery: SqlQuery, limitRows: Int): SqlQuery {
+    return sqlQuery.params(limitRows)
   }
 
-  fun getAllRows(tableName: String): String {
-    return queryAllRows.format(tableName)
+  fun getAllRows(sqlQuery: SqlQuery): SqlQuery {
+    return sqlQuery
   }
 }
