@@ -1,4 +1,4 @@
-package data_base
+package database_client
 
 import java.sql.ResultSet
 import java.sql.ResultSetMetaData

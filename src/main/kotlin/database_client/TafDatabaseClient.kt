@@ -1,4 +1,4 @@
-package data_base
+package database_client
 
 import com.vladsch.kotlin.jdbc.Session
 import com.vladsch.kotlin.jdbc.SqlQuery
@@ -15,13 +15,13 @@ class TafDatabaseClient() : DatabaseClient {
     return client
   }
 
-  override fun selectOneRow(sqlQuery: SqlQuery, limit: Int): Map<String, Any> {
-    val rowQuery: SqlQuery = SqlQueryBuilder().getLimitRows(sqlQuery, limit)
+  override fun selectOneRow(sqlQuery: String, param: Map<String, Any>): Map<String, Any> {
+    val rowQuery: SqlQuery = SqlQueryBuilder().buildQuery(sqlQuery, param)
     return client.query(rowQuery, ResultSetProvider.getSingleRow)
   }
 
-  override fun selectAllRows(sqlQuery: SqlQuery): List<HashMap<String, Any>> {
-    val rowsQuery: SqlQuery = SqlQueryBuilder().getAllRows(sqlQuery)
+  override fun selectAllRows(sqlQuery: String, param: Map<String, Any>): List<HashMap<String, Any>> {
+    val rowsQuery: SqlQuery = SqlQueryBuilder().buildQuery(sqlQuery, param)
     return client.query(rowsQuery, ResultSetProvider.getRows)
   }
 
