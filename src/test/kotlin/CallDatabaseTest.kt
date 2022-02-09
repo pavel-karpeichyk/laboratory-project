@@ -25,7 +25,7 @@ class CallDatabaseTest : BaseTest() {
 
   @Test
   fun `verify login in data that gets from database`() {
-    val resultSingleRow : Map<String, Any> = tafDataBaseClient.selectOneRow(sqlQuery, param)
+    val resultSingleRow: Map<String, Any> = tafDataBaseClient.selectOneRow(sqlQuery, param)
     val expectedValue: Any? = resultSingleRow[titleColumn]
     Assertions.assertEquals(expectedValue, actualValue, "Expected login doesn't match actual")
   }
