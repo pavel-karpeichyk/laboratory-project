@@ -10,12 +10,12 @@ class TafDatabaseClient() : DatabaseClient {
   private var client: Session? = null
 
   override fun getClient(): Session {
-    if(client == null) {
+    if (client == null) {
       client = with(databaseClientConfig) {
         session(url, user, pass)
       }
     }
-    return client !!
+    return client!!
   }
 
   override fun selectOneRow(sqlQuery: String, param: Map<String, Any>): Map<String, Any> {
@@ -29,6 +29,6 @@ class TafDatabaseClient() : DatabaseClient {
   }
 
   override fun closeDbConnection() {
-    client == null
+    client = null
   }
 }

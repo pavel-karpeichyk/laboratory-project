@@ -35,6 +35,6 @@ class CallDatabaseTest : BaseTest() {
   @Test
   fun `verify emails `() {
     val resultRows: List<HashMap<String, Any>> = tafDatabaseClient.selectAllRows(userAccountByRegexEmail, regexEmail)
-    Assertions.assertTrue(resultRows.size>1, "List include one note or empty")
+    Assertions.assertTrue(resultRows.size > 1, "List include one note or empty")
   }
 }
