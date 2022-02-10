@@ -20,7 +20,7 @@ class CallDatabaseTest : BaseTest() {
   }
 
   @Test
-  fun `verify login returns single result from user account table for selected name`() {
+  fun `verify selectOneRow returns result from user account table for selected column`() {
     val actualValue: String = "admmin"
     val titleColumn: String = "login"
     val paramName: Map<String, Any> = mapOf("name" to "Master Testov")
