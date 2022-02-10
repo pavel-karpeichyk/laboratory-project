@@ -29,7 +29,7 @@ class TafDatabaseClient() : DatabaseClient {
   }
 
   override fun closeDbConnection() {
-    client = null
     client?.connection?.close()
+    client = null
   }
 }
