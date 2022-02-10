@@ -7,7 +7,7 @@ object EsMoneymanSqlQuery {
     SELECT * FROM $schema.user_account WHERE name = :name
     """.trimIndent()
 
-  val selectEmailUserAccountByRegex: String = """
+  val selectUserAccountByEmailRegex: String = """
     SELECT * FROM $schema.user_account WHERE email LIKE :email
   """.trimIndent()
 }

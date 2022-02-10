@@ -7,13 +7,7 @@ import org.junit.jupiter.api.Test
 
 class CallDatabaseTest : BaseTest() {
 
-  private val actualValue: String = "admmin"
-  private val titleColumn: String = "login"
   private lateinit var tafDatabaseClient: TafDatabaseClient
-  private val paramName: Map<String, Any> = mapOf("name" to "Master Testov")
-  private val userAccountByNameQuery: String = EsMoneymanSqlQuery.selectUserAccountByName
-  private val regexEmail: Map<String, Any> = mapOf("email" to "ta%")
-  private val userAccountByRegexEmail: String = EsMoneymanSqlQuery.selectEmailUserAccountByRegex
 
   @BeforeAll
   fun initClient() {
@@ -26,14 +20,20 @@ class CallDatabaseTest : BaseTest() {
   }
 
   @Test
-  fun `verify login in data that gets from database`() {
+  fun `verify login returns single result from user account table for selected name`() {
+    val actualValue: String = "admmin"
+    val titleColumn: String = "login"
+    val paramName: Map<String, Any> = mapOf("name" to "Master Testov")
+    val userAccountByNameQuery: String = EsMoneymanSqlQuery.selectUserAccountByName
     val resultSingleRow: Map<String, Any> = tafDatabaseClient.selectOneRow(userAccountByNameQuery, paramName)
     val expectedValue: Any? = resultSingleRow[titleColumn]
     Assertions.assertEquals(expectedValue, actualValue, "Expected login doesn't match actual")
   }
 
   @Test
-  fun `verify emails `() {
+  fun `verify selectAllRows returns multiple results from user account table for selected email pattern`() {
+    val regexEmail: Map<String, Any> = mapOf("email" to "ta%")
+    val userAccountByRegexEmail: String = EsMoneymanSqlQuery.selectUserAccountByEmailRegex
     val resultRows: List<HashMap<String, Any>> = tafDatabaseClient.selectAllRows(userAccountByRegexEmail, regexEmail)
     Assertions.assertTrue(resultRows.size > 1, "List include one note or empty")
   }
