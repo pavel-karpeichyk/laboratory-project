@@ -10,7 +10,8 @@ data class AppConfig(
   val registrationUiEndpoint: String,
   val crmLoginEndpoint: String,
   var cmrUserConfig: CrmUserConfig,
-  var wireMockClientConfig: WireMockClientConfig
+  var wireMockClientConfig: WireMockClientConfig,
+  var databaseClientConfig: DatabaseClientConfig
 ) : TafContext {
   companion object {
     private const val PROTOCOL_HTTPS = "https://"
