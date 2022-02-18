@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
 import core.context.staticContext
 import core.ui.elements.Button.clickButton
-import core.ui.elements.Input.setInputValue
+import core.ui.elements.Input.setInputValueWithCondition
 import org.openqa.selenium.By
 
 class LandingPage : BasePage() {
@@ -15,16 +15,16 @@ class LandingPage : BasePage() {
   private val loanAmountInput: By = By.id("loanAmount")
   private val requestLoanButton: By = By.xpath("//a[@class='btn btn_red mainCalculator__submit']")
 
-  fun clickAcceptCoockiesButton() {
+  fun clickAcceptCookiesButton() {
     clickButton(acceptCookiesButton)
   }
 
   fun setLoanPeriod(loanDays: String) {
-    setInputValue(loanPeriodInput, loanDays)
+    setInputValueWithCondition(loanPeriodInput, loanDays)
   }
 
   fun setLoanAmount(amount: String) {
-    setInputValue(loanAmountInput, amount)
+    setInputValueWithCondition(loanAmountInput, amount)
   }
 
   fun clickRequestButton() {
