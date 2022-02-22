@@ -20,6 +20,8 @@ class VerifyUserDataFromUiAndDatabaseTest : BaseUITest() {
   @BeforeAll
   fun initClient() {
     tafDatabaseClient = TafDatabaseClient()
+    personalUserDataConfig = PersonalUserDataConfig("",
+      "","","","")
   }
 
   @AfterAll
