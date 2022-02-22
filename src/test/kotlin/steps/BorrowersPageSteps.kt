@@ -6,21 +6,26 @@ import org.apache.logging.log4j.Logger
 
 class BorrowersPageSteps {
 
-  private val borrowersPage: BorrowersPage by lazy { BorrowersPage() }
   private val logger: Logger = LogManager.getLogger()
+  private val borrowersPage: BorrowersPage by lazy { BorrowersPage() }
 
-  fun getBorrowersTable() {
+  private fun openPage(){
+    borrowersPage.openPage()
+  }
+
+  private fun getBorrowersTable() {
     logger.info("Open borrowers table")
     borrowersPage.apply {
-      clickSearchButton()
+      filterSearchBlock.clickSearchButton()
     }
   }
 
   fun getIdBorrower() : String?{
-    CrmLoginPageSteps().crmLogin()
-    CrmAdminPageSteps().switchToBorrowersPage()
-    BorrowersPageSteps().getBorrowersTable()
-  return  BorrowersPage().getBorrowerId()
+    return  with(BorrowersPageSteps()){
+      openPage()
+      getBorrowersTable()
+      borrowersPage.searchResultBlock.getBorrowerId()
+    }
   }
 
 }

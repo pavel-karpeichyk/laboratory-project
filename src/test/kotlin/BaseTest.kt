@@ -11,6 +11,7 @@ abstract class BaseTest {
 
   @BeforeAll
   fun configContext() {
+
     StaticContextHolder.tafContext = AppConfigProvider().getAppConfig()
     DynamicContextHolder.tafContext = DynamicContext()
   }
@@ -18,6 +19,6 @@ abstract class BaseTest {
   @AfterAll
   fun cleanup() {
     StaticContextHolder.clearContext()
-    StaticContextHolder.clearContext()
+    DynamicContextHolder.clearContext()
   }
 }

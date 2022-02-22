@@ -1,6 +1,6 @@
 driverType: LOCAL
 browserType: CHROME
-timeout: 10000
+timeout: 30000
 browserScreenSize: 1280x720
 
 #data for remote core.ui.driver

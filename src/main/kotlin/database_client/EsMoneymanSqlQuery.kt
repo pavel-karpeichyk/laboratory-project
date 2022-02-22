@@ -12,9 +12,10 @@ object EsMoneymanSqlQuery {
   """.trimIndent()
 
   val selectUserPassportNumberByBorrowerId: String = """
-   Select  $schema.mm_aes_decrypt(personal_data.passport_identification_number) 
-   from $schema.borrower 
-    join $schema.personal_data on borrower.personal_data_id = personal_data.id
-     where borrower.id = :id
+   SELECT  $schema.mm_aes_decrypt(personal_data.passport_identification_number) 
+   AS "DNI"
+   FROM $schema.borrower 
+   JOIN $schema.personal_data on borrower.personal_data_id = personal_data.id
+   WHERE borrower.id = :id
  """.trimIndent()
 }

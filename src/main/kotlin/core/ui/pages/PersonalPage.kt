@@ -7,7 +7,6 @@ import org.openqa.selenium.By
 class PersonalPage : BasePage() {
 
   override val url: String = staticContext.getPersonalUrl()
-
   private val name: By = By.id("firstName")
   private val surname: By = By.id("firstLastName")
   private val birthDate: By = By.id("birthday")
@@ -27,8 +26,7 @@ class PersonalPage : BasePage() {
   }
 
   fun getBirthDate() {
-//TODO
-    // may be separate on few methods (getDay, getMonth,getYear)
+TODO()
   }
 
   fun getPassportNumber(): String? {

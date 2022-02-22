@@ -1,6 +1,6 @@
 package steps
 
-import core.context.crmUserConfig
+import core.context.constant.CrmUserConfig
 import core.context.staticContext
 import core.ui.pages.CrmLoginPage
 import org.apache.logging.log4j.LogManager
@@ -8,15 +8,10 @@ import org.apache.logging.log4j.Logger
 
 class CrmLoginPageSteps {
 
-  private val crmLoginPage: CrmLoginPage by lazy { CrmLoginPage() }
   private val logger: Logger = LogManager.getLogger()
+  private val crmLoginPage: CrmLoginPage by lazy { CrmLoginPage() }
 
-  fun openCrmPage(){
-    logger.info("Open crm page")
-    CrmLoginPage().openPage()
-  }
-
-  fun crmLogin(){
+  fun loginToCrm(crmUserConfig: CrmUserConfig = staticContext.cmrUserConfig) {
     crmLoginPage.apply {
       openPage()
       with(crmUserConfig) {
@@ -26,6 +21,6 @@ class CrmLoginPageSteps {
         submitLoginButton()
       }
     }
+    logger.info("Login in private area")
   }
-
 }

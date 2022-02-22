@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
 import core.context.staticContext
 import core.ui.elements.Button.clickButton
-import core.ui.elements.Input.setInputValueWithCondition
+import core.ui.elements.Input.setInputWithConditionPresenceValue
 import org.openqa.selenium.By
 
 class LandingPage : BasePage() {
@@ -20,11 +20,11 @@ class LandingPage : BasePage() {
   }
 
   fun setLoanPeriod(loanDays: String) {
-    setInputValueWithCondition(loanPeriodInput, loanDays)
+    setInputWithConditionPresenceValue(loanPeriodInput, loanDays)
   }
 
   fun setLoanAmount(amount: String) {
-    setInputValueWithCondition(loanAmountInput, amount)
+    setInputWithConditionPresenceValue(loanAmountInput, amount)
   }
 
   fun clickRequestButton() {

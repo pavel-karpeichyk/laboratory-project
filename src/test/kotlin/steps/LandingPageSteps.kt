@@ -6,8 +6,8 @@ import org.apache.logging.log4j.Logger
 
 class LandingPageSteps {
 
-  private val landingPage: LandingPage by lazy { LandingPage() }
   private val logger: Logger = LogManager.getLogger()
+  private val landingPage: LandingPage by lazy { LandingPage() }
 
   fun openLandingPage() {
     logger.info("Open Landing Page")

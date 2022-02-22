@@ -6,15 +6,14 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.openqa.selenium.By
 import org.openqa.selenium.Keys
-import java.time.Duration
 
 object Input {
 
   private val logger: Logger = LogManager.getLogger()
 
-  fun setInputValueWithCondition(locator: By, value: String) {
+  fun setInputWithConditionPresenceValue(locator: By, value: String) {
     `$`(locator).also { element ->
-      element.shouldBe(Condition.visible, Duration.ofSeconds(20)).sendKeys(Keys.CONTROL, "A")
+      element.shouldBe(Condition.visible).sendKeys(Keys.CONTROL, "A")
       logger.info("Set $value in input element")
       element.sendKeys(value)
       element.shouldHave(Condition.value(value))
@@ -30,12 +29,12 @@ object Input {
   }
 
   fun getInputValue(locator: By): String? {
-    var value : String? = ""
-   `$`(locator).also { element->
-     element.shouldBe(Condition.visible,Duration.ofSeconds(30))
-    value = element.value
-     logger.info("Get $value from input element")//nonstable work
-   }
+    var value: String? = ""
+    `$`(locator).also { element ->
+      element.shouldBe(Condition.visible)
+      value = element.value
+      logger.info("Get $value from input element")//nonstable work
+    }
     return value
   }
 }
