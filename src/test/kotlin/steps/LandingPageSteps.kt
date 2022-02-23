@@ -11,7 +11,7 @@ class LandingPageSteps {
 
   fun openLandingPage() {
     logger.info("Open Landing Page")
-    LandingPage().openPage()
+    landingPage.openPage()
   }
 
   fun clickAcceptCoockiesButton(): LandingPage {

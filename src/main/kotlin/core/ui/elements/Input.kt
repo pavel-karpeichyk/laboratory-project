@@ -11,7 +11,7 @@ object Input {
 
   private val logger: Logger = LogManager.getLogger()
 
-  fun setInputWithConditionPresenceValue(locator: By, value: String) {
+  fun setInputValueAndVerify(locator: By, value: String) {
     `$`(locator).also { element ->
       element.shouldBe(Condition.visible).sendKeys(Keys.CONTROL, "A")
       logger.info("Set $value in input element")
@@ -22,7 +22,6 @@ object Input {
 
   fun setInputValue(locator: By, value: String) {
     `$`(locator).also { element ->
-      element.shouldBe(Condition.visible)
       logger.info("Set $value in input element")
       element.sendKeys(value)
     }
@@ -31,9 +30,8 @@ object Input {
   fun getInputValue(locator: By): String? {
     var value: String? = ""
     `$`(locator).also { element ->
-      element.shouldBe(Condition.visible)
       value = element.value
-      logger.info("Get $value from input element")//nonstable work
+      logger.info("Get $value from input element")
     }
     return value
   }

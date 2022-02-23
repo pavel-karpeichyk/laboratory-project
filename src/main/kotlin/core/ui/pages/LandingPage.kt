@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
 import core.context.staticContext
 import core.ui.elements.Button.clickButton
-import core.ui.elements.Input.setInputWithConditionPresenceValue
+import core.ui.elements.Input.setInputValueAndVerify
 import org.openqa.selenium.By
 
 class LandingPage : BasePage() {
@@ -15,16 +15,20 @@ class LandingPage : BasePage() {
   private val loanAmountInput: By = By.id("loanAmount")
   private val requestLoanButton: By = By.xpath("//a[@class='btn btn_red mainCalculator__submit']")
 
+  override fun verifyPageOpened() {
+    `$`(loanPeriodInput).shouldBe(Condition.visible)
+  }
+
   fun clickAcceptCookiesButton() {
     clickButton(acceptCookiesButton)
   }
 
   fun setLoanPeriod(loanDays: String) {
-    setInputWithConditionPresenceValue(loanPeriodInput, loanDays)
+    setInputValueAndVerify(loanPeriodInput, loanDays)
   }
 
   fun setLoanAmount(amount: String) {
-    setInputWithConditionPresenceValue(loanAmountInput, amount)
+    setInputValueAndVerify(loanAmountInput, amount)
   }
 
   fun clickRequestButton() {

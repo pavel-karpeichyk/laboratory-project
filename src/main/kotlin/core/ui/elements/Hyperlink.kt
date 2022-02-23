@@ -10,9 +10,9 @@ object Hyperlink {
 
   private val logger: Logger = LogManager.getLogger()
 
-  fun getValueHyperlink(locator: SelenideElement): String {
-    val value: String = `$`(locator).shouldBe(Condition.visible).text
-    logger.info("Get $value from borrowers id table ")
+  fun getHyperlinkValue(element: SelenideElement): String {
+    val value: String = element.text
+    logger.info("Get $value from $element")
     return value
   }
 }

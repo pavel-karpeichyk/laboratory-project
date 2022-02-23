@@ -10,10 +10,6 @@ data class AppConfig(
   val registrationApiEndpoint: String,
   val registrationUiEndpoint: String,
   val crmLoginApiEndpoint: String,
-  val crmLoginUiEndpoint: String,
-  val privateAreaLoginUiEndpoint: String,
-  val personalUiEndpoint: String,
-  val borrowersUiEndpoint: String,
   var cmrUserConfig: CrmUserConfig,
   var wireMockClientConfig: WireMockClientConfig,
   var databaseClientConfig: DatabaseClientConfig
@@ -27,8 +23,4 @@ data class AppConfig(
   fun getWireMockUrl() = "$PROTOCOL_HTTP${wireMockClientConfig.host}:${wireMockClientConfig.port}"
   fun getBaseUrlWithAuth() = "$PROTOCOL_HTTPS$user:$pass@$host"
   fun getUrlWithBasicAuthSelectedEndpoint(endpoint: String) = "${getBaseUrlWithAuth()}$endpoint"
-  fun getCrmUiLoginUrl() = "$PROTOCOL_HTTPS$host$crmLoginUiEndpoint"
-  fun getBorrowersUiUrl() = "$PROTOCOL_HTTPS$host$borrowersUiEndpoint"
-  fun getPrivateAreaLoginUrl() = "$PROTOCOL_HTTPS$host$privateAreaLoginUiEndpoint"
-  fun getPersonalUrl() = "$PROTOCOL_HTTPS$host$personalUiEndpoint"
 }

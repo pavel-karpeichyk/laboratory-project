@@ -9,7 +9,8 @@ class BorrowersPageSteps {
   private val logger: Logger = LogManager.getLogger()
   private val borrowersPage: BorrowersPage by lazy { BorrowersPage() }
 
-  private fun openPage(){
+  private fun openPage() {
+    logger.info("Open borrowers page")
     borrowersPage.openPage()
   }
 
@@ -20,12 +21,12 @@ class BorrowersPageSteps {
     }
   }
 
-  fun getIdBorrower() : String?{
-    return  with(BorrowersPageSteps()){
-      openPage()
-      getBorrowersTable()
-      borrowersPage.searchResultBlock.getBorrowerId()
-    }
+  fun getBorrowerId(): String? {
+    borrowersPage.apply {
+    openPage()
+    verifyPageOpened()
+    getBorrowersTable()
+    return searchResultBlock.getBorrowerId()
   }
-
+  }
 }

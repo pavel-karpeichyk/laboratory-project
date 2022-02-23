@@ -12,8 +12,10 @@ class CrmLoginPageSteps {
   private val crmLoginPage: CrmLoginPage by lazy { CrmLoginPage() }
 
   fun loginToCrm(crmUserConfig: CrmUserConfig = staticContext.cmrUserConfig) {
+    logger.info("Login in user area")
     crmLoginPage.apply {
       openPage()
+      verifyPageOpened()
       with(crmUserConfig) {
         setLogin(login)
         setPassword(password)
@@ -21,6 +23,5 @@ class CrmLoginPageSteps {
         submitLoginButton()
       }
     }
-    logger.info("Login in private area")
   }
 }

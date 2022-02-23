@@ -18,8 +18,8 @@ object Button {
     }
   }
 
-  fun clickButtonSelenideElement(locator: SelenideElement) {
-    `$`(locator).also { element ->
+  fun clickButton(element: SelenideElement) {
+    element.also { element ->
       logger.info("Click button: ${element.text()}")
       element.shouldBe(Condition.visible).click()
     }
