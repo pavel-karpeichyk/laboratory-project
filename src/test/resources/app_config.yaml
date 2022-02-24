@@ -1,18 +1,24 @@
 user: test
 pass: test
-host: es-bravo.moneyman.ru
+host: mmes-master.idfaws.com
+smsCode: test
 
 #endPoints
 registrationApiEndpoint: /client-area/registration
 registrationUiEndpoint: /client-area/#/registration?
-crmLoginEndpoint: /secure/rest/sign/in
+crmLoginApiEndpoint: /secure/rest/sign/in
 
 cmrUserConfig:
- login: admmin12
- password: nimda201212
- captcha: 1111112
-
+  login: test
+  password: test
+  captcha: test
 #wire mock client config
 wireMockClientConfig:
- host: localhost
- port: 8080
+  host: localhost
+  port: 8080
+
+  # data base client config
+databaseClientConfig:
+  url: jdbc:mysql://mmes-master.idfaws.com:3306?characterEncoding=UTF-8&useSSL=false
+  user: test
+  pass: test
