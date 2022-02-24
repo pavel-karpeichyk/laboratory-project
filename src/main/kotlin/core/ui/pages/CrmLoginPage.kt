@@ -2,21 +2,19 @@ package core.ui.pages
 
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
-import core.context.staticContext
 import core.ui.elements.Button.clickButton
 import core.ui.elements.Input.setInputValueAndVerify
 import org.openqa.selenium.By
 
 class CrmLoginPage : BasePage() {
 
-  private val baseUrl: String = staticContext.getBaseUrl()
   override val url: String = "$baseUrl/secure/new-admin/index.html#/login"
   private val loginInput: By = By.id("username")
   private val passwordInput: By = By.id("password")
   private val captchaInput: By = By.id("captcha")
   private val loginButton: By = By.cssSelector("#main button[type='submit']")
 
-  override fun verifyPageOpened(){
+  override fun verifyPageOpened() {
     `$`(loginInput).shouldBe(Condition.visible)
   }
 

@@ -2,7 +2,6 @@ package core.ui.pages
 
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
-import core.context.staticContext
 import core.ui.elements.Button.clickButton
 import core.ui.elements.Input.setInputValue
 import core.ui.elements.Input.setInputValueAndVerify
@@ -10,7 +9,6 @@ import org.openqa.selenium.By
 
 class PrivateAreaLoginPage : BasePage() {
 
-  private val baseUrl: String = staticContext.getBaseUrl()
   override val url: String = "$baseUrl/secure/login"
   private val acceptCookiesButton: By = By.cssSelector("button[aria-label='Aceptar todo']")
   private val passportField: By = By.id("identifier")
@@ -18,7 +16,7 @@ class PrivateAreaLoginPage : BasePage() {
   private val smsCodeInput: By = By.id("otp")
 
   override fun verifyPageOpened() {
-   `$`(passportField).shouldBe(Condition.visible)
+    `$`(passportField).shouldBe(Condition.visible)
   }
 
   fun clickAcceptCookiesButton() {
@@ -33,7 +31,7 @@ class PrivateAreaLoginPage : BasePage() {
     clickButton(authorizeButton)
   }
 
-  fun setSmsCodeField(code : String) {
+  fun setSmsCodeField(code: String) {
     setInputValue(smsCodeInput, code)
   }
 }

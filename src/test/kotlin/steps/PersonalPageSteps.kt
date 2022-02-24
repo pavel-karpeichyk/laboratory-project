@@ -17,7 +17,7 @@ class PersonalPageSteps {
 
     logger.info("Get personal data")
     with(personalPage) {
-      verifyCurrentUrl(LoanDetailPage().getPageUrl())
+     LoanDetailPage().verifyPageOpened()
       openPage()
       verifyPageOpened()
       person = PersonalUserDataConfig(

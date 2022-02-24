@@ -1,7 +1,6 @@
 import core.context.staticContext
 import core.personal_user_data.PersonalUserDataConfig
 import core.ui.elements.Browser.clearCookie
-import core.ui.elements.Browser.verifyCurrentUrl
 import core.ui.pages.PersonalPage
 import database_client.TafDatabaseClient
 import org.junit.jupiter.api.AfterAll
@@ -21,8 +20,10 @@ class VerifyUserDataFromUiAndDatabaseTest : BaseUITest() {
   @BeforeAll
   fun initClient() {
     tafDatabaseClient = TafDatabaseClient()
-    personalUserDataConfig = PersonalUserDataConfig("",
-      "","","","")
+    personalUserDataConfig = PersonalUserDataConfig(
+      "",
+      "", "", "", ""
+    )
   }
 
   @AfterAll
@@ -33,11 +34,11 @@ class VerifyUserDataFromUiAndDatabaseTest : BaseUITest() {
   @Test
   fun `verify that data from Ui equals data from database`() {
     CrmLoginPageSteps().loginToCrm()
-    val id : String? = BorrowersPageSteps().getBorrowerId()
-    val dni: String = EsMySqlDatabaseSteps().getPassportNumber(id,tafDatabaseClient)
+    val id: String? = BorrowersPageSteps().getBorrowerId()
+    val dni: String = EsMySqlDatabaseSteps().getPassportNumber(id, tafDatabaseClient)
     personalUserDataConfig.passportIdentificationNumber = dni
     clearCookie()
-    PrivateAreaLoginSteps().loginToPrivateArea(personalUserDataConfig,staticContext.smsCode)
+    PrivateAreaLoginSteps().loginToPrivateArea(personalUserDataConfig, staticContext.smsCode)
     PersonalPageSteps().apply {
       getUserData()
     }
@@ -45,5 +46,6 @@ class VerifyUserDataFromUiAndDatabaseTest : BaseUITest() {
     println(PersonalPage().getSurname())
     println(PersonalPage().getPassportNumber())
     println(PersonalPage().getEmail())
+    println(PersonalPage().getBirthDate())
   }
 }

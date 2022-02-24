@@ -2,22 +2,21 @@ package core.ui.pages
 
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
-import core.context.staticContext
 import core.ui.elements.Input.getInputValue
+import core.ui.elements.Select.getSelectValue
 import org.openqa.selenium.By
 
 class PersonalPage : BasePage() {
 
-  private val baseUrl: String = staticContext.getBaseUrl() // занести в базовый класс
   override val url: String = "$baseUrl/client-area/#/settings/personal"
   private val name: By = By.id("firstName")
   private val surname: By = By.id("firstLastName")
-  private val birthDate: By = By.id("birthday")
+  private val birthDay: By = By.id("//*[@id='birthday']/div[1]/div/select")
   private val passportNumber: By = By.id("passportIdentificationNumber")
   private val email: By = By.id("email")
 
   override fun verifyPageOpened() {
-    `$`(name).shouldBe(Condition.visible)
+    `$`(name).shouldBe(Condition.value("Ta")) //
   }
 
   fun getName(): String? {
@@ -29,7 +28,7 @@ class PersonalPage : BasePage() {
   }
 
   fun getBirthDate(): String? {
-    TODO()
+    return getSelectValue(birthDay)
   }
 
   fun getPassportNumber(): String? {

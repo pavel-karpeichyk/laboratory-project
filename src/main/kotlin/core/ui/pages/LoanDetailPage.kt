@@ -1,12 +1,15 @@
 package core.ui.pages
 
-import core.context.staticContext
+import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Selenide.`$`
+import org.openqa.selenium.By
 
 class LoanDetailPage : BasePage() {
-  private val baseUrl: String = staticContext.getBaseUrl()
+
   override val url: String = "$baseUrl/client-area/#/loan-detail"
+  private val myCreditHyperlink : By = By.cssSelector("a[aria-current='page']")
 
   override fun verifyPageOpened() {
-    TODO("Not yet implemented")
+    `$`(myCreditHyperlink).shouldBe(Condition.visible)
   }
 }
