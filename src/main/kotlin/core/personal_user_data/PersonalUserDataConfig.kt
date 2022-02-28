@@ -1,9 +1,9 @@
 package core.personal_user_data
 
 data class PersonalUserDataConfig(
-  var name: String,
-  var surname: String,
-  var email: String,
-  var passportIdentificationNumber: String,
-  var dateOfBirth: String
+  var name: String? = null,
+  var surname: String? = null,
+  var email: String? = null,
+  var passportIdentificationNumber: String? = null,
+  var dateOfBirth: String? = null
 )

@@ -16,7 +16,7 @@ class PrivateAreaLoginSteps {
       openPage()
       verifyPageOpened()
       clickAcceptCookiesButton()
-      setPassportNumber(personalUserDataConfig.passportIdentificationNumber)
+      personalUserDataConfig.passportIdentificationNumber?.let { setPassportNumber(it) }
       clickAuthorizeButton()
       setSmsCodeField(code)
     }

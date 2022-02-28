@@ -41,11 +41,13 @@ Scenario: [PA] [UI] Verify - user data in the 'Contact information' tab match da
 	And: Search in the personal_data database table using {personalDataId}:
 	userName - first_name
 	userSurname - first_last_name
+	birthday - birthday
 	userPassportNumber - passport_identification_number
 	``
 		  Select mm_aes_decrypt(passport_identification_number),
 		  first_name,
-		  first_last_name
+		  first_last_name,
+		  birthday
 		  from es_moneyman.personal_data where id = {personalDataId}
 	``
 	Then: User data on the page [Personal Information] match data in the database

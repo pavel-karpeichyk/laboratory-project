@@ -11,12 +11,14 @@ class PersonalPage : BasePage() {
   override val url: String = "$baseUrl/client-area/#/settings/personal"
   private val name: By = By.id("firstName")
   private val surname: By = By.id("firstLastName")
-  private val birthDay: By = By.id("//*[@id='birthday']/div[1]/div/select")
+  private val birthDay: By = By.cssSelector("[name='birthdayDay']")
+  private val birthMonth: By = By.cssSelector("[name='birthdayMonth']")
+  private val birthYear: By = By.cssSelector("[name='birthdayYear']")
   private val passportNumber: By = By.id("passportIdentificationNumber")
   private val email: By = By.id("email")
 
   override fun verifyPageOpened() {
-    `$`(name).shouldBe(Condition.value("Ta")) //
+    `$`(name).shouldBe(Condition.value(""))
   }
 
   fun getName(): String? {
@@ -27,8 +29,16 @@ class PersonalPage : BasePage() {
     return getInputValue(surname)
   }
 
-  fun getBirthDate(): String? {
+  fun getBirthDay(): String? {
     return getSelectValue(birthDay)
+  }
+
+  fun getBirthMonth(): String? {
+    return getSelectValue(birthMonth)
+  }
+
+  fun getBirthYear(): String? {
+    return getSelectValue(birthYear)
   }
 
   fun getPassportNumber(): String? {

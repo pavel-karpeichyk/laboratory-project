@@ -1,7 +1,7 @@
 package steps
 
+import core.convecters.DateConverter
 import core.personal_user_data.PersonalUserDataConfig
-import core.ui.elements.Browser.verifyCurrentUrl
 import core.ui.pages.LoanDetailPage
 import core.ui.pages.PersonalPage
 import org.apache.logging.log4j.LogManager
@@ -13,11 +13,24 @@ class PersonalPageSteps {
   private val personalPage: PersonalPage by lazy { PersonalPage() }
   private lateinit var person: PersonalUserDataConfig
 
-  fun getUserData(): PersonalUserDataConfig {
+  private fun getMonthIndex(): String {
+    return DateConverter().getMonthAsNumber(personalPage.getBirthMonth()!!)
+  }
 
+  private fun getFullBirthDay(): String {
+    return DateConverter().convertDayFormat(personalPage.getBirthDay()!!)
+  }
+
+  private fun getBirthDate(): String {
+    return with(personalPage) {
+      "${getBirthYear()}-${getMonthIndex()}-${getFullBirthDay()}"
+    }
+  }
+
+  fun getUserData(): PersonalUserDataConfig {
     logger.info("Get personal data")
     with(personalPage) {
-     LoanDetailPage().verifyPageOpened()
+      LoanDetailPage().verifyPageOpened()
       openPage()
       verifyPageOpened()
       person = PersonalUserDataConfig(
@@ -25,7 +38,7 @@ class PersonalPageSteps {
         surname = getSurname()!!,
         passportIdentificationNumber = getPassportNumber()!!,
         email = getEmail()!!,
-        dateOfBirth = getBirthDate()!!
+        dateOfBirth = getBirthDate()
       )
     }
     return person

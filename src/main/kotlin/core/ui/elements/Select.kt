@@ -11,7 +11,7 @@ object Select {
 
   fun getSelectValue(locator: By): String? {
     var value: String? = ""
-    value = `$`(locator).shadowRoot().value
+    value = `$`(locator).text
     logger.info("Get $value from input element")
     return value
   }
