@@ -14,15 +14,3 @@ enum class MonthType(val index: String) {
   NOVIEMBRE("11"),
   DICIEMBRE("12");
 }
-
-fun main(){
-  var string = "octubre"
-  for(month in MonthType.values()){
-    if(string.uppercase() == month.name){
-      string=month.index
-    }
-
-  }
-
-  println(string)
-}
