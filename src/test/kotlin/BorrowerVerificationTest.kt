@@ -38,8 +38,7 @@ class BorrowerVerificationTest : BaseUITest() {
   fun `verify that data from Ui equals data from database`() {
     CrmLoginPageSteps().loginToCrm()
     val borrowerId: String? = BorrowersPageSteps().getBorrowerId()
-    val dni: String = EsMySqlDatabaseSteps().getPassportNumber(borrowerId, tafDatabaseClient)
-    actualUser.passportIdentificationNumber = dni
+    actualUser.passportIdentificationNumber =  EsMySqlDatabaseSteps().getPassportNumber(borrowerId, tafDatabaseClient)
     clearCookie()
     PrivateAreaLoginSteps().loginToPrivateArea(actualUser, staticContext.smsCode)
     PersonalPageSteps().apply {
@@ -50,15 +49,15 @@ class BorrowerVerificationTest : BaseUITest() {
         getUserDataById(borrowerId, tafDatabaseClient, selectUserAccountIdAndPersonalDataIdByBorrowerId)
       val userAccountId: String = getValueFromMap("user_account_id", userAccountIdPersonalDataIdList)
       val personalDataId: String = getValueFromMap("personal_data_id", userAccountIdPersonalDataIdList)
-      val emailList = getUserDataById(userAccountId.toString(), tafDatabaseClient, selectUserEmailByUserAccountId)
+      val emailList = getUserDataById(userAccountId, tafDatabaseClient, selectUserEmailByUserAccountId)
       actualUser.email = getValueFromMap("email", emailList)
       val dniNameSurnameBirthdayList: List<HashMap<String, Any>> =
-        getUserDataById(personalDataId.toString(), tafDatabaseClient, selectDniNameSurnameBirthdayByPersonalDataId)
+        getUserDataById(personalDataId, tafDatabaseClient, selectDniNameSurnameBirthdayByPersonalDataId)
       actualUser.passportIdentificationNumber = getValueFromMap("DNI", dniNameSurnameBirthdayList)
       actualUser.name = getValueFromMap("first_name", dniNameSurnameBirthdayList)
       actualUser.surname = getValueFromMap("first_last_name", dniNameSurnameBirthdayList)
       actualUser.dateOfBirth = getValueFromMap("birthday", dniNameSurnameBirthdayList)
-      assertEquals(expectedUser, actualUser, "Expected user data doesn't match actual")
     }
+    assertEquals(expectedUser, actualUser, "Expected user data doesn't match actual")
   }
 }
