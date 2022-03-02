@@ -3,7 +3,7 @@ package core.ui.pages
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
 import core.ui.elements.Button.clickButton
-import core.ui.elements.Input.setInputValueAndVerify
+import core.ui.elements.Input.setInputValue
 import org.openqa.selenium.By
 
 class CrmLoginPage : BasePage() {
@@ -19,15 +19,15 @@ class CrmLoginPage : BasePage() {
   }
 
   fun setLogin(login: String) {
-    setInputValueAndVerify(loginInput, login)
+    setInputValue(loginInput, login)
   }
 
   fun setPassword(password: String) {
-    setInputValueAndVerify(passwordInput, password)
+    setInputValue(passwordInput, password)
   }
 
   fun setCaptcha(captcha: String) {
-    setInputValueAndVerify(captchaInput, captcha)
+    setInputValue(captchaInput, captcha)
   }
 
   fun submitLoginButton() {

@@ -3,8 +3,8 @@ package core.ui.pages
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
 import core.context.staticContext
-import core.ui.elements.Button.clickButton
-import core.ui.elements.Input.setInputValueAndVerify
+import core.ui.elements.Button
+import core.ui.elements.Input.setInputValueToPrefilledFiledAndVerify
 import org.openqa.selenium.By
 
 class LandingPage : BasePage() {
@@ -20,19 +20,19 @@ class LandingPage : BasePage() {
   }
 
   fun clickAcceptCookiesButton() {
-    clickButton(acceptCookiesButton)
+    Button.clickButton(acceptCookiesButton)
   }
 
   fun setLoanPeriod(loanDays: String) {
-    setInputValueAndVerify(loanPeriodInput, loanDays)
+    setInputValueToPrefilledFiledAndVerify(loanPeriodInput, loanDays)
   }
 
   fun setLoanAmount(amount: String) {
-    setInputValueAndVerify(loanAmountInput, amount)
+    setInputValueToPrefilledFiledAndVerify(loanAmountInput, amount)
   }
 
   fun clickRequestButton() {
-    clickButton(requestLoanButton)
+    Button.clickButton(requestLoanButton)
   }
 
   fun verifyRequestLoanButtonIsDisplayed() {

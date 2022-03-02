@@ -1,22 +1,21 @@
 package core.convecters
 
-class DateConverter {
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
+object DateConverter {
 
   fun getMonthAsNumber(month: String): String {
-    var index: String = month
-    for (monthType in MonthType.values()) {
-      if (month.uppercase() == monthType.name) {
-        index = monthType.index
-      }
-    }
-    return index
+    return MonthType.valueOf(month.uppercase()).index
   }
 
-  fun convertDayFormat(day: String): String {
-    var day = day
-    if (day.length == 1) {
-      day = "0$day"
-    }
-    return day
+  fun getDateInSelectedFormat(
+    actualDate: String,
+    actualDateFormat: String,
+    expectedDateFormat: String
+  ): String {
+    val actualDateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern(actualDateFormat)
+    val expectedDateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern(expectedDateFormat)
+    return LocalDate.parse(actualDate, actualDateFormatter).atStartOfDay().format(expectedDateFormatter)
   }
 }

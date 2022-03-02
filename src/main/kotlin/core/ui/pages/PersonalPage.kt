@@ -18,7 +18,7 @@ class PersonalPage : BasePage() {
   private val email: By = By.id("email")
 
   override fun verifyPageOpened() {
-    `$`(name).shouldBe(Condition.value(""))
+    `$`(name).shouldNotBe(Condition.empty)
   }
 
   fun getName(): String? {
@@ -29,23 +29,23 @@ class PersonalPage : BasePage() {
     return getInputValue(surname)
   }
 
-  fun getBirthDay(): String? {
+  fun getBirthDay(): String {
     return getSelectValue(birthDay)
   }
 
-  fun getBirthMonth(): String? {
+  fun getBirthMonth(): String {
     return getSelectValue(birthMonth)
   }
 
-  fun getBirthYear(): String? {
+  fun getBirthYear(): String {
     return getSelectValue(birthYear)
   }
 
-  fun getPassportNumber(): String? {
+  fun getPassportNumber(): String {
     return getInputValue(passportNumber)
   }
 
-  fun getEmail(): String? {
+  fun getEmail(): String {
     return getInputValue(email)
   }
 }

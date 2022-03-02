@@ -2,9 +2,8 @@ package core.ui.pages
 
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
-import core.ui.elements.Button.clickButton
+import core.ui.elements.Button
 import core.ui.elements.Input.setInputValue
-import core.ui.elements.Input.setInputValueAndVerify
 import org.openqa.selenium.By
 
 class PrivateAreaLoginPage : BasePage() {
@@ -20,15 +19,15 @@ class PrivateAreaLoginPage : BasePage() {
   }
 
   fun clickAcceptCookiesButton() {
-    clickButton(acceptCookiesButton)
+    Button.clickButton(acceptCookiesButton)
   }
 
   fun setPassportNumber(number: String) {
-    setInputValueAndVerify(passportField, number)
+    setInputValue(passportField, number)
   }
 
   fun clickAuthorizeButton() {
-    clickButton(authorizeButton)
+    Button.clickButton(authorizeButton)
   }
 
   fun setSmsCodeField(code: String) {

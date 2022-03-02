@@ -12,16 +12,11 @@ object Button {
   private val logger: Logger = LogManager.getLogger()
 
   fun clickButton(locator: By) {
-    `$`(locator).also { element ->
-      logger.info("Click button: ${element.text()}")
-      element.shouldBe(Condition.visible).click()
-    }
+    clickButton(`$`(locator))
   }
 
   fun clickButton(element: SelenideElement) {
-    element.also { element ->
       logger.info("Click button: ${element.text()}")
       element.shouldBe(Condition.visible).click()
-    }
   }
 }

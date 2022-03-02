@@ -4,11 +4,11 @@ object EsMoneymanSqlQuery {
   private const val schema: String = "es_moneyman"
 
   val selectUserAccountByName: String = """
-    SELECT * FROM $schema.user_account WHERE name = :name
-    """.trimIndent()
+   SELECT * FROM $schema.user_account WHERE name = :name
+  """.trimIndent()
 
   val selectUserAccountByEmailRegex: String = """
-    SELECT * FROM $schema.user_account WHERE email LIKE :email
+   SELECT * FROM $schema.user_account WHERE email LIKE :email
   """.trimIndent()
 
   val selectUserPassportNumberByBorrowerId: String = """
@@ -20,24 +20,24 @@ object EsMoneymanSqlQuery {
  """.trimIndent()
 
   val selectUserAccountIdAndPersonalDataIdByBorrowerId: String = """
-  SELECT user_account_id, personal_data_id
+   SELECT user_account_id, personal_data_id
    FROM $schema.borrower
    WHERE $schema.borrower.id = :id
-  """.trimIndent()
+ """.trimIndent()
 
   val selectUserEmailByUserAccountId: String = """
-  SELECT email 
-  FROM $schema.user_account 
-  WHERE id = :id
-  """.trimIndent()
+   SELECT email 
+   FROM $schema.user_account 
+   WHERE id = :id
+ """.trimIndent()
 
   val selectDniNameSurnameBirthdayByPersonalDataId: String = """
-  SELECT $schema.mm_aes_decrypt(personal_data.passport_identification_number) 
+   SELECT $schema.mm_aes_decrypt(personal_data.passport_identification_number) 
    AS "DNI",
-  first_name,
-  first_last_name,
-  birthday
-  FROM $schema.personal_data 
-  WHERE id = :id
-  """.trimIndent()
+   first_name,
+   first_last_name,
+   CONVERT(birthday, CHAR) as birthday
+   FROM $schema.personal_data 
+   WHERE id = :id
+ """.trimIndent()
 }

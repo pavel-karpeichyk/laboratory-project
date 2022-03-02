@@ -1,9 +1,10 @@
-import core.context.staticContext
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import core.personal_user_data.PersonalUserDataConfig
 import core.ui.elements.Browser.clearCookie
 import database_client.EsMoneymanSqlQuery.selectDniNameSurnameBirthdayByPersonalDataId
 import database_client.EsMoneymanSqlQuery.selectUserAccountIdAndPersonalDataIdByBorrowerId
 import database_client.EsMoneymanSqlQuery.selectUserEmailByUserAccountId
+import database_client.EsMoneymanSqlQuery.selectUserPassportNumberByBorrowerId
 import database_client.TafDatabaseClient
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -12,14 +13,15 @@ import org.junit.jupiter.api.Test
 import steps.BorrowersPageSteps
 import steps.CrmLoginPageSteps
 import steps.EsMySqlDatabaseSteps
-import steps.PersonalPageSteps
-import steps.PrivateAreaLoginSteps
+import steps.PrivateAreaSteps
 
 class BorrowerVerificationTest : BaseUITest() {
 
   private lateinit var tafDatabaseClient: TafDatabaseClient
   private lateinit var expectedUser: PersonalUserDataConfig
   private lateinit var actualUser: PersonalUserDataConfig
+  private val esMySqlDatabaseSteps: EsMySqlDatabaseSteps by lazy { EsMySqlDatabaseSteps() }
+  private val privateAreaSteps: PrivateAreaSteps by lazy { PrivateAreaSteps() }
 
   @BeforeAll
   fun initClient() {
@@ -34,29 +36,25 @@ class BorrowerVerificationTest : BaseUITest() {
   }
 
   @Test
-
-  fun `verify that data from Ui equals data from database`() {
+  fun `verify borrower verification data  from Ui equals the same data from database`() {
     CrmLoginPageSteps().loginToCrm()
-    val borrowerId: String? = BorrowersPageSteps().getBorrowerId()
-    actualUser.passportIdentificationNumber =  EsMySqlDatabaseSteps().getPassportNumber(borrowerId, tafDatabaseClient)
+    val borrowerId: String = BorrowersPageSteps().getBorrowerId()
+    var userData: MutableMap<String, Any> =
+      esMySqlDatabaseSteps.getUserDataById(borrowerId, tafDatabaseClient, selectUserPassportNumberByBorrowerId)
+    actualUser.passportIdentificationNumber = esMySqlDatabaseSteps.getValueFromMap("DNI", userData)
     clearCookie()
-    PrivateAreaLoginSteps().loginToPrivateArea(actualUser, staticContext.smsCode)
-    PersonalPageSteps().apply {
+    privateAreaSteps.apply {
+      loginInPrivateArea(actualUser)
       expectedUser = getUserData()
     }
-    EsMySqlDatabaseSteps().apply {
-      val userAccountIdPersonalDataIdList: List<HashMap<String, Any>> =
+    esMySqlDatabaseSteps.apply {
+      val mapId: MutableMap<String, Any> =
         getUserDataById(borrowerId, tafDatabaseClient, selectUserAccountIdAndPersonalDataIdByBorrowerId)
-      val userAccountId: String = getValueFromMap("user_account_id", userAccountIdPersonalDataIdList)
-      val personalDataId: String = getValueFromMap("personal_data_id", userAccountIdPersonalDataIdList)
-      val emailList = getUserDataById(userAccountId, tafDatabaseClient, selectUserEmailByUserAccountId)
-      actualUser.email = getValueFromMap("email", emailList)
-      val dniNameSurnameBirthdayList: List<HashMap<String, Any>> =
-        getUserDataById(personalDataId, tafDatabaseClient, selectDniNameSurnameBirthdayByPersonalDataId)
-      actualUser.passportIdentificationNumber = getValueFromMap("DNI", dniNameSurnameBirthdayList)
-      actualUser.name = getValueFromMap("first_name", dniNameSurnameBirthdayList)
-      actualUser.surname = getValueFromMap("first_last_name", dniNameSurnameBirthdayList)
-      actualUser.dateOfBirth = getValueFromMap("birthday", dniNameSurnameBirthdayList)
+      val userAccountId: String = getValueFromMap("user_account_id", mapId)
+      val personalDataId: String = getValueFromMap("personal_data_id", mapId)
+      userData = getUserDataById(userAccountId, tafDatabaseClient, selectUserEmailByUserAccountId)
+      userData.putAll(getUserDataById(personalDataId, tafDatabaseClient, selectDniNameSurnameBirthdayByPersonalDataId))
+      actualUser = jacksonObjectMapper().convertValue(userData, PersonalUserDataConfig::class.java)
     }
     assertEquals(expectedUser, actualUser, "Expected user data doesn't match actual")
   }

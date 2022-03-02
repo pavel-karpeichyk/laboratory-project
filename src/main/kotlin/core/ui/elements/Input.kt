@@ -11,7 +11,7 @@ object Input {
 
   private val logger: Logger = LogManager.getLogger()
 
-  fun setInputValueAndVerify(locator: By, value: String) {
+  fun setInputValueToPrefilledFiledAndVerify(locator: By, value: String) {
     `$`(locator).also { element ->
       element.shouldBe(Condition.visible).sendKeys(Keys.CONTROL, "A")
       logger.info("Set $value in input element")
@@ -24,15 +24,13 @@ object Input {
     `$`(locator).also { element ->
       logger.info("Set $value in input element")
       element.sendKeys(value)
+      // element.shouldHave(Condition.value(value))// спотыкается
     }
   }
 
-  fun getInputValue(locator: By): String? {
-    var value: String? = ""
-    `$`(locator).also { element ->
-      value = element.value
-      logger.info("Get $value from input element")
-    }
-    return value
+  fun getInputValue(locator: By): String {
+    val value = `$`(locator).value
+    logger.info("Get $value from input element")
+    return value!!
   }
 }

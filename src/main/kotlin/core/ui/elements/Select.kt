@@ -9,10 +9,9 @@ object Select {
 
   private val logger: Logger = LogManager.getLogger()
 
-  fun getSelectValue(locator: By): String? {
-    var value: String? = ""
-    value = `$`(locator).text
-    logger.info("Get $value from input element")
+  fun getSelectValue(locator: By): String {
+    var value: String = `$`(locator).text
+    logger.info("Get $value from select  element")
     return value
   }
 }

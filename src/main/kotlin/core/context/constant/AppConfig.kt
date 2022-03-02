@@ -6,7 +6,6 @@ data class AppConfig(
   var user: String,
   var pass: String,
   val host: String,
-  val smsCode: String,
   val registrationApiEndpoint: String,
   val registrationUiEndpoint: String,
   val crmLoginApiEndpoint: String,
