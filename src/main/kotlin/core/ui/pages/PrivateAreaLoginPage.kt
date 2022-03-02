@@ -2,7 +2,7 @@ package core.ui.pages
 
 import com.codeborne.selenide.Condition
 import com.codeborne.selenide.Selenide.`$`
-import core.ui.elements.Button
+import core.ui.elements.Button.clickButton
 import core.ui.elements.Input.setInputValue
 import org.openqa.selenium.By
 
@@ -19,7 +19,7 @@ class PrivateAreaLoginPage : BasePage() {
   }
 
   fun clickAcceptCookiesButton() {
-    Button.clickButton(acceptCookiesButton)
+    clickButton(acceptCookiesButton)
   }
 
   fun setPassportNumber(number: String) {
@@ -27,7 +27,7 @@ class PrivateAreaLoginPage : BasePage() {
   }
 
   fun clickAuthorizeButton() {
-    Button.clickButton(authorizeButton)
+    clickButton(authorizeButton)
   }
 
   fun setSmsCodeField(code: String) {

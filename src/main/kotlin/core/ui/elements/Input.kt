@@ -24,13 +24,12 @@ object Input {
     `$`(locator).also { element ->
       logger.info("Set $value in input element")
       element.sendKeys(value)
-      // element.shouldHave(Condition.value(value))// спотыкается
     }
   }
 
   fun getInputValue(locator: By): String {
-    val value = `$`(locator).value
+    val value = `$`(locator).text()
     logger.info("Get $value from input element")
-    return value!!
+    return value
   }
 }
