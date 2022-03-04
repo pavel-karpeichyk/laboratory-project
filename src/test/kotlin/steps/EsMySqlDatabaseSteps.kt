@@ -1,15 +1,30 @@
 package steps
 
+import database_client.EsMoneymanSqlQuery.selectDniNameSurnameBirthdayByPersonalDataId
+import database_client.EsMoneymanSqlQuery.selectUserAccountIdAndPersonalDataIdByBorrowerId
+import database_client.EsMoneymanSqlQuery.selectUserEmailByUserAccountId
+import database_client.EsMoneymanSqlQuery.selectUserPassportNumberByBorrowerId
 import database_client.TafDatabaseClient
 
-class EsMySqlDatabaseSteps {
+class EsMySqlDatabaseSteps(private val tafDatabaseClient: TafDatabaseClient = TafDatabaseClient()) {
 
-  fun getUserDataById(id: String?, client: TafDatabaseClient, query: String): MutableMap<String, Any> {
-    val paramId: Map<String, Any> = mapOf("id" to "$id")
-    return client.selectOneRow(query, paramId).toMutableMap()
+  fun getUserPassportNumber(borrowerId: String): Map<String, Any> {
+    val queryParams: Map<String, Any> = mapOf("id" to borrowerId)
+    return tafDatabaseClient.selectOneRow(selectUserPassportNumberByBorrowerId, queryParams)
   }
 
-  fun getValueFromMap(key: String, map : Map<String, Any>) : String{
-    return map[key].toString()
+  fun getUserAccountIdAndPersonalDataId(borrowerId: String): Map<String, Any> {
+    val queryParams: Map<String, Any> = mapOf("id" to borrowerId)
+    return tafDatabaseClient.selectOneRow(selectUserAccountIdAndPersonalDataIdByBorrowerId, queryParams)
+  }
+
+  fun getUserEmail(userAccountId: String): Map<String, Any> {
+    val queryParams: Map<String, Any> = mapOf("id" to userAccountId)
+    return tafDatabaseClient.selectOneRow(selectUserEmailByUserAccountId, queryParams)
+  }
+
+  fun getUserNameSurnameBirthday(personalDataId: String): Map<String, Any> {
+    val queryParams: Map<String, Any> = mapOf("id" to personalDataId)
+    return tafDatabaseClient.selectOneRow(selectDniNameSurnameBirthdayByPersonalDataId, queryParams)
   }
 }

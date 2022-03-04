@@ -28,8 +28,6 @@ object Input {
   }
 
   fun getInputValue(locator: By): String {
-    val value = `$`(locator).text()
-    logger.info("Get $value from input element")
-    return value
+   return `$`(locator).value!!.also { logger.info("Get $it from $locator") }
   }
 }

@@ -9,7 +9,7 @@ data class PersonalUserDataConfig(
   @JsonProperty("first_last_name")
   var surname: String? = null,
   var email: String? = null,
-  @JsonProperty("DNI")
+  @JsonProperty("passport_identification_number")
   var passportIdentificationNumber: String? = null,
   @JsonProperty("birthday")
   var dateOfBirth: String? = null,

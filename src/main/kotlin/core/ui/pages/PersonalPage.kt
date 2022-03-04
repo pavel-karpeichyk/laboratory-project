@@ -21,11 +21,11 @@ class PersonalPage : BasePage() {
     `$`(name).shouldNotBe(Condition.empty)
   }
 
-  fun getName(): String? {
+  fun getName(): String {
     return getInputValue(name)
   }
 
-  fun getSurname(): String? {
+  fun getSurname(): String {
     return getInputValue(surname)
   }
 

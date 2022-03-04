@@ -9,8 +9,6 @@ object Hyperlink {
   private val logger: Logger = LogManager.getLogger()
 
   fun getHyperlinkValue(element: SelenideElement): String {
-    val value: String = element.text
-    logger.info("Get $value from $element")
-    return value
+    return element.text.also { logger.info("Get $it from $element") }
   }
 }

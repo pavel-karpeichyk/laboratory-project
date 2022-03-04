@@ -16,7 +16,7 @@ object Button {
   }
 
   fun clickButton(element: SelenideElement) {
-      logger.info("Click button: ${element.text()}")
-      element.shouldBe(Condition.visible).click()
+    logger.info("Click button: ${element.text()}")
+    element.shouldBe(Condition.visible).click()
   }
 }
