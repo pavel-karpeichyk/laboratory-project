@@ -1,6 +1,6 @@
 package steps
 
-import database_client.EsMoneymanSqlQuery.selectDniNameSurnameBirthdayByPersonalDataId
+import database_client.EsMoneymanSqlQuery.selectNameSurnameBirthdayByPersonalDataId
 import database_client.EsMoneymanSqlQuery.selectUserAccountIdAndPersonalDataIdByBorrowerId
 import database_client.EsMoneymanSqlQuery.selectUserEmailByUserAccountId
 import database_client.EsMoneymanSqlQuery.selectUserPassportNumberByBorrowerId
@@ -25,6 +25,6 @@ class EsMySqlDatabaseSteps(private val tafDatabaseClient: TafDatabaseClient = Ta
 
   fun getUserNameSurnameBirthday(personalDataId: String): Map<String, Any> {
     val queryParams: Map<String, Any> = mapOf("id" to personalDataId)
-    return tafDatabaseClient.selectOneRow(selectDniNameSurnameBirthdayByPersonalDataId, queryParams)
+    return tafDatabaseClient.selectOneRow(selectNameSurnameBirthdayByPersonalDataId, queryParams)
   }
 }

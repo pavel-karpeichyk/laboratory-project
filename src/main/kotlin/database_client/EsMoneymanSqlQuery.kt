@@ -31,7 +31,7 @@ object EsMoneymanSqlQuery {
    WHERE id = :id
  """.trimIndent()
 
-  val selectDniNameSurnameBirthdayByPersonalDataId: String = """
+  val selectNameSurnameBirthdayByPersonalDataId: String = """
    SELECT first_name,
    first_last_name,
    CONVERT(birthday, CHAR) as birthday

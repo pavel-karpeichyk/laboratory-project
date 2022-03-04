@@ -4,8 +4,11 @@ import com.codeborne.selenide.Selenide.open
 import core.context.staticContext
 
 abstract class BasePage {
+
   protected abstract val url: String
   protected  val baseUrl = staticContext.getBaseUrl()
+
+  abstract fun verifyPageOpened()
 
   fun openPage() {
     open(url)
@@ -14,6 +17,4 @@ abstract class BasePage {
   fun getPageUrl(): String {
     return url
   }
-
-  abstract fun verifyPageOpened()
 }
