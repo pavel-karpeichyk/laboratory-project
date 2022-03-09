@@ -15,7 +15,7 @@ import steps.PrivateAreaSteps
 class BorrowerVerificationTest : BaseUITest() {
 
   private lateinit var borrowerId: String
-  private lateinit var userData: Map<String, Any>
+  private lateinit var userData: MutableMap<String, Any>
   private lateinit var tafDatabaseClient: TafDatabaseClient
   private lateinit var actualUserValueUi: PersonalUserDataConfig
   private lateinit var expectedUserValueDb: PersonalUserDataConfig
@@ -47,19 +47,15 @@ class BorrowerVerificationTest : BaseUITest() {
   }
 
   @Test
-  fun `verify borrower verification data  from Ui equals the same data from database`() {
+  fun `Private Area - UI - Personal Page user data is the same as the user data in the database`() {
     privateAreaSteps.apply {
-      loginInPrivateArea(expectedUserValueDb)
+      loginToPrivateArea(expectedUserValueDb)
       openPersonPage()
-      actualUserValueUi = getUserData()
+      actualUserValueUi = actualUiUserData()
     }
+
     esMySqlDatabaseSteps.apply {
-      val mapId: Map<String, Any> =
-        getUserAccountIdAndPersonalDataId(borrowerId)
-      val userAccountId: String = mapId["user_account_id"].toString()
-      val personalDataId: String = mapId["personal_data_id"].toString()
-      (userData as MutableMap<String, Any>).putAll(getUserEmail(userAccountId).toMutableMap())
-      (userData as MutableMap<String, Any>).putAll(getUserNameSurnameBirthday(personalDataId))
+      userData.putAll(getUserDatabaseData(borrowerId))
       expectedUserValueDb = jacksonObjectMapper().convertValue(userData, PersonalUserDataConfig::class.java)
     }
     assertEquals(expectedUserValueDb, actualUserValueUi,"Expected user data doesn't match actual")

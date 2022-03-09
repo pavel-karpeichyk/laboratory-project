@@ -18,13 +18,13 @@ class PrivateAreaSteps {
   private val loanDetailPage: LoanDetailPage by lazy { LoanDetailPage() }
   private val privateAreaLoginPage: PrivateAreaLoginPage by lazy { PrivateAreaLoginPage() }
 
-  fun loginInPrivateArea(personalUserDataConfig: PersonalUserDataConfig) {
-    logger.info("Login in Private Area")
+  fun loginToPrivateArea(personalUserDataConfig: PersonalUserDataConfig) {
+    logger.info("Login to Private Area")
     privateAreaLoginPage.apply {
       openPage()
       verifyPageOpened()
       clickAcceptCookiesButton()
-      personalUserDataConfig.passportIdentificationNumber?.let { setPassportNumber(it) }
+      setPassportNumber(personalUserDataConfig.passportIdentificationNumber!!)
       clickAuthorizeButton()
       setSmsCodeField(personalUserDataConfig.smsCode)
       loanDetailPage.verifyPageOpened()
@@ -38,7 +38,7 @@ class PrivateAreaSteps {
     }
   }
 
-  fun getUserData(): PersonalUserDataConfig {
+  fun actualUiUserData(): PersonalUserDataConfig {
     logger.info("Get personal data")
     with(personalPage) {
       return PersonalUserDataConfig(
@@ -51,17 +51,13 @@ class PrivateAreaSteps {
     }
   }
 
-  private fun getMonthIndex(): String {
-    return getMonthAsNumber(personalPage.getBirthMonth())
-  }
-
   private fun convertDateInSelectedFormat(): String {
     return getDateInSelectedFormat(getBirthDate(), dateFormatPersonalPage, borrowerDateFormat)
   }
 
   private fun getBirthDate(): String {
     val dayValue = personalPage.getBirthDay()
-    val monthValue = getMonthIndex()
+    val monthValue = getMonthAsNumber(personalPage.getBirthMonth())
     val yearValue = personalPage.getBirthYear()
     return "$yearValue-$monthValue-$dayValue"
   }

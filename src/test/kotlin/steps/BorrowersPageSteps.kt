@@ -19,7 +19,7 @@ class BorrowersPageSteps {
 
   fun searchBorrowerUsingFilterAndGetBorrowerId(): String {
     logger.info("Search borrower using filter and get borrower id")
-    borrowersPage.apply {
+    borrowersPage.run {
       filterSearchBlock.clickSearchButton()
       return searchResultsBlock.getBorrowerId()
     }
