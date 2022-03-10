@@ -6,18 +6,18 @@ import org.apache.logging.log4j.Logger
 
 class LandingPageSteps {
 
-  private val landingPage: LandingPage by lazy { LandingPage() }
   private val logger: Logger = LogManager.getLogger()
+  private val landingPage: LandingPage by lazy { LandingPage() }
 
   fun openLandingPage() {
     logger.info("Open Landing Page")
-    LandingPage().openPage()
+    landingPage.openPage()
   }
 
   fun clickAcceptCoockiesButton(): LandingPage {
     logger.info("Click Accept Coockies Button")
     return landingPage.apply {
-      clickAcceptCoockiesButton()
+      clickAcceptCookiesButton()
       verifyRequestLoanButtonIsDisplayed()
     }
   }

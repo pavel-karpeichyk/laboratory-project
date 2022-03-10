@@ -18,6 +18,6 @@ abstract class BaseTest {
   @AfterAll
   fun cleanup() {
     StaticContextHolder.clearContext()
-    StaticContextHolder.clearContext()
+    DynamicContextHolder.clearContext()
   }
 }

@@ -8,7 +8,7 @@ data class AppConfig(
   val host: String,
   val registrationApiEndpoint: String,
   val registrationUiEndpoint: String,
-  val crmLoginEndpoint: String,
+  val crmLoginApiEndpoint: String,
   var cmrUserConfig: CrmUserConfig,
   var wireMockClientConfig: WireMockClientConfig,
   var databaseClientConfig: DatabaseClientConfig
