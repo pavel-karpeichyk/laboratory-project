@@ -21,6 +21,18 @@ pipeline {
       }
     }
   }
+  stage('Reports') {
+    steps {
+      allure([
+          includeProperties: false,
+          jdk: '',
+          properties: [],
+          reportBuildPolicy: 'ALWAYS',
+          results: [[path: 'build/reports/tests/test']]
+      ])
+    }
+  }
+
 
   post {
     always {
