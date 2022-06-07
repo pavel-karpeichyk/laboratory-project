@@ -12,7 +12,6 @@ pipeline {
     timestamps()
   }
   tools {
-    jdk 'null'
     gradle 'Gradle'
   }
 
