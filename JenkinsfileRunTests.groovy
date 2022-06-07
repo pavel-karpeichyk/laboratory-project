@@ -8,7 +8,9 @@ static String startRunTestSuite() {
 
 pipeline {
   agent any
-
+  options {
+    timestamps()
+  }
   tools {
     jdk 'jdk 1.8'
     gradle 'Gradle'
