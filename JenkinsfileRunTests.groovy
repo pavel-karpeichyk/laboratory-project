@@ -12,7 +12,7 @@ pipeline {
     timestamps()
   }
   tools {
-    jdk
+    jdk '8'
     gradle 'Gradle'
   }
 
