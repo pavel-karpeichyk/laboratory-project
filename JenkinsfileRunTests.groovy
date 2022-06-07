@@ -24,6 +24,7 @@ pipeline {
 
     post {// read about this section add gradle and junit report
       always {
+        junit 'build/test-results/**/*.xml'
         allure([
             includeProperties: false,
             jdk              : '',
@@ -37,8 +38,7 @@ pipeline {
             reportName           : "Gradle Test Report",
             allowMissing         : true,
             alwaysLinkToLastBuild: true,
-            keepAll              : true]
-        )
+            keepAll              : true])
       }
     }
   }
