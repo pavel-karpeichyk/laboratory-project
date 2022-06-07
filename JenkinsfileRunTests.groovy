@@ -1,3 +1,9 @@
+static String startRunTestSuite() {
+  return """
+            echo Start internal test
+              gradle clean -i test --tests BorrowerVerificationTest       
+  """
+}
 
 pipeline {
   agent any
@@ -5,14 +11,13 @@ pipeline {
     timestamps()
   }
   tools {
-   
     gradle 'Gradle'
   }
 
   stages {
     stage('Build Tests') {
       steps {
-        "echo Start internal test gradle clean -i test --tests "
+        bat startRunTestSuite()
       }
     }
   }
