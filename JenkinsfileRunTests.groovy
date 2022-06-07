@@ -22,7 +22,7 @@ pipeline {
     }
   }
 
-    post {
+    post {// read about this section add gradle and junit report
       always {
         allure([
             includeProperties: false,
@@ -31,6 +31,14 @@ pipeline {
             reportBuildPolicy: 'ALWAYS',
             results          : [[path:"/build/allure-results"]]
         ])
+        publishHTML([
+            reportDir            : "build/reports/tests/test",
+            reportFiles          : 'index.html',
+            reportName           : "Gradle Test Report",
+            allowMissing         : true,
+            alwaysLinkToLastBuild: true,
+            keepAll              : true]
+        )
       }
     }
   }
