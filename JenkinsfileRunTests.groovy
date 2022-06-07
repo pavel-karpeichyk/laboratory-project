@@ -22,7 +22,7 @@ pipeline {
     }
   }
 
-    post {// read about this section add gradle and junit report
+    post {
       always {
         junit 'build/test-results/**/*.xml'
         allure([
@@ -31,7 +31,8 @@ pipeline {
             properties       : [],
             reportBuildPolicy: 'ALWAYS',
             results          : [[path:"/build/allure-results"]]
-        ])
+        ])}
+      failure {
         publishHTML([
             reportDir            : "build/reports/tests/test",
             reportFiles          : 'index.html',
