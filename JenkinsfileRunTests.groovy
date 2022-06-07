@@ -24,7 +24,7 @@ pipeline {
 
     post {
       always {
-        junit 'build/test-results/**/*.xml'
+        junit 'build'
         allure([
             includeProperties: false,
             jdk              : '',
