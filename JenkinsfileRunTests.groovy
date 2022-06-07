@@ -12,8 +12,8 @@ pipeline {
     timestamps()
   }
   tools {
-    jdk "jdk1.8"
-    gradle "gradle"
+    jdk "1.8"
+    gradle "7.4.1"
   }
 
   stages {
