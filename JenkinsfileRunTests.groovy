@@ -20,6 +20,7 @@ pipeline {
         bat startRunTestSuite()
       }
     }
+  }
 
     post {
       always {
@@ -33,4 +34,3 @@ pipeline {
       }
     }
   }
-}
