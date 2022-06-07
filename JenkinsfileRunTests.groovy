@@ -1,10 +1,3 @@
-static String startRunTestSuite() {
-  return """
-            echo Start internal test
-              gradle clean -i test --tests ApplicationPropertiesTest
-              
-  """
-}
 
 pipeline {
   agent any
@@ -19,7 +12,7 @@ pipeline {
   stages {
     stage('Build Tests') {
       steps {
-        bat startRunTestSuite()
+        "echo Start internal test gradle clean -i test --tests "
       }
     }
   }
